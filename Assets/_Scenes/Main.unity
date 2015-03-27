@@ -1073,6 +1073,7 @@ MonoBehaviour:
   shotSpawn: {fileID: 209407826}
   shipRotateTowards: {x: 0, y: 0, z: 0, w: 0}
   rotationSpeed: 4
+  playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
 --- !u!82 &1844056656
 AudioSource:
   m_ObjectHideFlags: 0
