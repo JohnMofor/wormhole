@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &587469859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538250024}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -1071,6 +1071,8 @@ MonoBehaviour:
     zMax: 8
   shot: {fileID: 126074, guid: 19ea3ec048b615540853af97939b2271, type: 2}
   shotSpawn: {fileID: 209407826}
+  shipRotateTowards: {x: 0, y: 0, z: 0, w: 0}
+  rotationSpeed: 4
 --- !u!82 &1844056656
 AudioSource:
   m_ObjectHideFlags: 0
