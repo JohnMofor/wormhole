@@ -14,39 +14,37 @@ public class PlayerController : MonoBehaviour
 	// Public members.
 	public float speed;
 	public float tilt;
+	public bool enableTilt = true;
 	public float fireRate;
 	public Boundary boundary;
 	public GameObject shot;
 	public Transform shotSpawn;
-	private bool haveClicked = false;
 	public Quaternion shipRotateTowards;
-
-
-	// Private members.
 	public float rotationSpeed = 4.0F;
-
+	private Rigidbody rb;
+	private float previousY;
+	
 	// Debug
 	public GameObject playerExplosion;
 
+	void Start ()
+	{
+		rb = GetComponent<Rigidbody> ();
+		shipRotateTowards = rb.rotation;
+		previousY = shipRotateTowards.eulerAngles.y;
+	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		Rigidbody rb = GetComponent<Rigidbody> ();
 		if (Input.GetButton ("Fire1")) {
 			Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
-			haveClicked = true;
 			Vector3 shipPointTowards = transform.position - mouseLocation; //-(mouseLocation - transform.position);
-			shipPointTowards.y = 0; // Cancel the y rotation.
 			shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
 		}
 
-		if (haveClicked) {
-			rb.rotation = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
-		}
 
 
-	
 	}
 
 	// Update for physics.
@@ -54,8 +52,6 @@ public class PlayerController : MonoBehaviour
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-
-		Rigidbody rb = GetComponent<Rigidbody> ();
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		rb.velocity = movement * speed;
@@ -67,8 +63,16 @@ public class PlayerController : MonoBehaviour
 			Mathf.Clamp (rb.position.z, boundary.zMin, boundary.zMax)
 		);
 
-		//rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
-
+		// Get the plain rotation components.
+		Quaternion slerpComp = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
+		// Get the tilt componenets
+		float tiltComp = enableTilt ? tilt * (slerpComp.eulerAngles.y - previousY) : 0;
+		// Act on rb
+		rb.rotation = Quaternion.Euler (tiltComp, slerpComp.eulerAngles.y, -tiltComp);
+		// Prepare for next update.
+		previousY = slerpComp.eulerAngles.y;
+		// Lateral motion?
+		//rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, rb.velocity.x * -tilt);
 
 	}
 

@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  tilt: 4
+  tilt: 2
   fireRate: .25
   boundary:
     xMin: -6
