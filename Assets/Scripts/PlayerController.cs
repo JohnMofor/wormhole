@@ -32,20 +32,17 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+		Rigidbody rb = GetComponent<Rigidbody> ();
 		if (Input.GetButton ("Fire1")) {
-
-			Vector2 shipLocation = new Vector2 (transform.position.x, transform.position.z);
-			Vector2 mouseLocation = CastRayToWorld ();
+			Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
 			haveClicked = true;
-			Vector2 shipToMouse = mouseLocation - shipLocation;
-			Vector3 shipPointTowards = new Vector3 (-(shipToMouse.x - shipLocation.x), 0, -(shipToMouse.y - shipLocation.y));
-			//transform.LookAt(shipPointTowards);
+			Vector3 shipPointTowards = transform.position - mouseLocation; //-(mouseLocation - transform.position);
+			shipPointTowards.y = 0; // Cancel the y rotation.
 			shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
 		}
 
 		if (haveClicked) {
-			GetComponent<Rigidbody> ().rotation = Quaternion.Slerp (GetComponent<Rigidbody> ().rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
+			rb.rotation = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
 		}
 
 
@@ -75,12 +72,13 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	Vector2 CastRayToWorld ()
+	Vector3 CastRayToWorld (Vector3 targetPosition)
 	{
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
-		Vector3 point = ray.origin + (ray.direction * 4.5f); 
-		Instantiate (playerExplosion, point, Quaternion.identity);
-		return new Vector2 (point.x, point.z);
+		Ray ray = Camera.main.ScreenPointToRay (targetPosition); 
+		Vector3 point = ray.origin + (ray.direction * 1.0f); 
+		//Instantiate (playerExplosion, point, Quaternion.identity); // was cool
+		//Debug.DrawRay (ray.origin, ray.direction * 10);
+		return point;
 	}
 
 }
