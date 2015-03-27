@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
 	// Private members.
 	public float rotationSpeed = 4.0F;
 
+	// Debug
+	public GameObject playerExplosion;
+
 	
 	// Update is called once per frame
 	void Update ()
@@ -74,8 +77,9 @@ public class PlayerController : MonoBehaviour
 
 	Vector2 CastRayToWorld ()
 	{
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);  
-		Vector3 point = ray.origin + (ray.direction * 4.5f);    
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
+		Vector3 point = ray.origin + (ray.direction * 4.5f); 
+		Instantiate (playerExplosion, point, Quaternion.identity);
 		return new Vector2 (point.x, point.z);
 	}
 
