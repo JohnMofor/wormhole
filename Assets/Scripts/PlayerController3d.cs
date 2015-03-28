@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 //
 //[System.Serializable]
 //public class Boundary
@@ -12,33 +13,38 @@ public class PlayerController3d : MonoBehaviour
 {
 	
 	// Public members.
-	public float speed;
-	public float verticalSensitivity = 1F;
-	public float tilt;
-	public bool enableTilt = true;
-	public float fireRate;
-	public Boundary boundary;
-	public GameObject shot;
+	public float baseSpeed = 2f;
+	public float verticalSensitivity = 10F;
+	public float horizontalSensitivity = 10F;
+	public float tilt = 2F;
+	//public float fireRate = 0.25f;
 	public float thrust = 5;
 	public float topSpeed = 50;
-	public bool followMouse = true;
-	public Transform shotSpawn;
-	public Quaternion shipRotateTowards;
 	public float rotationSpeed = 4.0F;
-	private Rigidbody rb;
-	private float previousY;
 
+	//public GameObject shot;
+	public Boundary boundary;
 
-	private Vector3 lastMouse;
+	public bool invertX = false;
+	public bool invertY = false;
+	public bool enableTilt = true;
+	//public bool followMouse = true;
+
+	public Transform shotSpawn;
 
 	// Debug
 	public GameObject playerExplosion;
+
+
+	// Private
+	private Quaternion shipRotateTowards;
+	private Rigidbody rb;
 	
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
 		shipRotateTowards = rb.rotation;
-		previousY = shipRotateTowards.eulerAngles.y;
+		//previousY = shipRotateTowards.eulerAngles.y;
 	}
 	
 	// Update For non-phsycis updates.
@@ -48,8 +54,10 @@ public class PlayerController3d : MonoBehaviour
 //		int direction = followMouse ? 1 : -1;
 //		Vector3 shipPointTowards = direction * (mouseLocation - transform.position);
 //		shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
-		
-		
+		//if (Input.GetKey(KeyCode.Space)) {
+
+		//}
+		//CastRayToWorld(Input.mousePosition);
 		
 	}
 	
@@ -60,11 +68,14 @@ public class PlayerController3d : MonoBehaviour
 //
 //		// Detect Movement
 //		
-//		float h = Input.GetAxis("Horizontal") * verticalSensitivity * Time.deltaTime;
-//		float v = Input.GetAxis("Vertical") * verticalSensitivity * Time.deltaTime;
-//
-//		rb.AddTorque(transform.up * h);
-//		rb.AddTorque(transform.right * v);
+		float h = Input.GetAxis ("Horizontal") * verticalSensitivity * Time.deltaTime;
+		float v = Input.GetAxis ("Vertical") * horizontalSensitivity * Time.deltaTime;
+
+		int xDir = invertX ? -1 : 1;
+		int yDir = invertY ? -1 : 1;
+		//rb.rotation = Quaternion.Euler(rb.transform.eulerAngles.x + v, rb.transform.eulerAngles.y + h, rb.transform.eulerAngles.z);
+		rb.AddTorque (-yDir * transform.up * h);
+		rb.AddTorque (-xDir * transform.right * v);
 
 
 //		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
@@ -84,13 +95,14 @@ public class PlayerController3d : MonoBehaviour
 //		}
 		
 		// Detect SpeedBoost 
-		//if (Input.GetKey (KeyCode.Space)) {
-		//	rb.AddForce (transform.forward * thrust, ForceMode.Force);
-		//}
-		//rb.velocity = Vector3.ClampMagnitude (rb.velocity, topSpeed);
+		if (Input.GetKey (KeyCode.Space)) {
+			rb.AddForce (transform.forward * thrust, ForceMode.Force);
+		}
+		rb.velocity = Vector3.ClampMagnitude (rb.velocity, topSpeed);
 		
 		// Get the plain rotation components.
-		//Quaternion slerpComp = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
+		//Quaternion slerpComp = Quaternion.Slerp (rb.rotation, Quaternion.LookRotation(CastRayToWorld(Input.mousePosition)), Time.deltaTime * rotationSpeed);
+		//rb.rotation = Quaternion.Euler(rb.transform.eulerAngles.x, rb.transform.eulerAngles.y, rb.transform.eulerAngles.z);
 		// Get the tilt componenets
 		//float tiltComp = enableTilt ? tilt * (slerpComp.eulerAngles.y - previousY) : 0;
 		// Act on rb
@@ -106,7 +118,8 @@ public class PlayerController3d : MonoBehaviour
 	{
 		Ray ray = Camera.main.ScreenPointToRay (targetPosition); 
 		Vector3 point = ray.origin + (ray.direction * 1.0f); 
-		Instantiate (playerExplosion, point, Quaternion.identity); // was cool
+		//Debug.Log (point);
+		//Instantiate (playerExplosion, point, Quaternion.identity); // was cool
 		//Debug.DrawRay (ray.origin, ray.direction * 10);
 		return point;
 	}
