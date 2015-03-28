@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour {
 		gameOver = false;
 		restart = false;
 
-		StartCoroutine (SpawnWaves());
+		//StartCoroutine (SpawnWaves());
 	}
 
 

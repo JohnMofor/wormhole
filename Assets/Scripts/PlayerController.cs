@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 	public float fireRate;
 	public Boundary boundary;
 	public GameObject shot;
+	public float thrust;
+	public float topSpeed = 50;
+	public bool followMouse = true;
 	public Transform shotSpawn;
 	public Quaternion shipRotateTowards;
 	public float rotationSpeed = 4.0F;
@@ -34,14 +37,13 @@ public class PlayerController : MonoBehaviour
 		previousY = shipRotateTowards.eulerAngles.y;
 	}
 	
-	// Update is called once per frame
+	// Update For non-phsycis updates.
 	void Update ()
 	{
-		if (Input.GetButton ("Fire1")) {
-			Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
-			Vector3 shipPointTowards = transform.position - mouseLocation; //-(mouseLocation - transform.position);
-			shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
-		}
+		Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
+		int direction = followMouse ? 1 : -1;
+		Vector3 shipPointTowards = direction * (mouseLocation - transform.position);
+		shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
 
 
 
@@ -50,18 +52,13 @@ public class PlayerController : MonoBehaviour
 	// Update for physics.
 	void FixedUpdate ()
 	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		if (Input.GetKey (KeyCode.Space)) {
+			Vector3 forwardXZ = new Vector3 (transform.forward.x, 0, transform.forward.z);
+			rb.AddForce (forwardXZ * thrust, ForceMode.Force);
+		}
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		rb.velocity = movement * speed;
 
-		rb.position = new Vector3
-		(
-			Mathf.Clamp (rb.position.x, boundary.xMin, boundary.xMax),
-			0.0f,
-			Mathf.Clamp (rb.position.z, boundary.zMin, boundary.zMax)
-		);
+		rb.velocity = Vector3.ClampMagnitude (rb.velocity, topSpeed);
 
 		// Get the plain rotation components.
 		Quaternion slerpComp = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
