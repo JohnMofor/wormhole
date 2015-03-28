@@ -17,14 +17,16 @@ public class PlayerController3d : MonoBehaviour
 	public float verticalSensitivity = 10F;
 	public float horizontalSensitivity = 10F;
 	public float tilt = 2F;
+	//public float stabilitySpeed = 20f;
+	public float stability = 1F;
 	//public float fireRate = 0.25f;
 	public float thrust = 5;
 	public float topSpeed = 50;
 	public float rotationSpeed = 4.0F;
+	public float maxAngle = 89;
 
 	//public GameObject shot;
 	public Boundary boundary;
-
 	public bool invertX = false;
 	public bool invertY = false;
 	public bool enableTilt = true;
@@ -37,13 +39,14 @@ public class PlayerController3d : MonoBehaviour
 
 
 	// Private
-	private Quaternion shipRotateTowards;
+	private Quaternion baseRotation;
 	private Rigidbody rb;
+
 	
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
-		shipRotateTowards = rb.rotation;
+		baseRotation = rb.rotation;
 		//previousY = shipRotateTowards.eulerAngles.y;
 	}
 	
@@ -60,7 +63,8 @@ public class PlayerController3d : MonoBehaviour
 		//CastRayToWorld(Input.mousePosition);
 		
 	}
-	
+	private float rotationZ = 0f;
+
 	// Update for physics.
 	void FixedUpdate ()
 	{
@@ -68,14 +72,37 @@ public class PlayerController3d : MonoBehaviour
 //
 //		// Detect Movement
 //		
-		float h = Input.GetAxis ("Horizontal") * verticalSensitivity * Time.deltaTime;
-		float v = Input.GetAxis ("Vertical") * horizontalSensitivity * Time.deltaTime;
+		float h = Input.GetAxis ("Horizontal") * horizontalSensitivity * Time.deltaTime;
+		float v = Input.GetAxis ("Vertical") * verticalSensitivity * Time.deltaTime;
 
 		int xDir = invertX ? -1 : 1;
 		int yDir = invertY ? -1 : 1;
 		//rb.rotation = Quaternion.Euler(rb.transform.eulerAngles.x + v, rb.transform.eulerAngles.y + h, rb.transform.eulerAngles.z);
-		rb.AddTorque (-yDir * transform.up * h);
-		rb.AddTorque (-xDir * transform.right * v);
+
+		// Unity uses Left hand grip rule (LHR)!!
+		rb.AddTorque (xDir * transform.up /*left to right*/ * h);
+		rb.AddTorque (-yDir * transform.right /*up to down*/ * v);
+		//rb.transform.rotation = Mathf.Clamp (rb.transform.rotation.z, -90, 90);
+		//transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -rotationZ);
+
+		//Quaternion rotationZ = Mathf.Clamp (rotationZ, -90, 90);
+
+
+		//rb.AddTorque (transform.forward /* slanting */ * Mathf.Cos(Vector3.Angle(transform.up, transform.right)));
+
+//		Vector3 predictedUp = Quaternion.AngleAxis(
+//			rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / (Time.deltaTime*horizontalSensitivity),
+//			rb.angularVelocity
+//			) * transform.up;
+//		
+//		Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
+//		// Uncomment the next line to stabilize on only 1 axis.
+//		torqueVector = Vector3.Project(torqueVector, transform.forward);
+//		rb.AddTorque(torqueVector * 100);
+//
+//		if (Quaternion.Angle(rb.rotation, baseRotation) <= maxAngle ) {
+//			//rb.rotation;
+//		}
 
 
 //		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
