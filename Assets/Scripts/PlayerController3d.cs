@@ -37,10 +37,12 @@ public class PlayerController3d : MonoBehaviour
 
 	// Private
 	private Rigidbody rb;
+	private AudioSource audio;
 	
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
+		audio = GetComponent<AudioSource> ();
 	}
 	
 	// Update for physics.
@@ -86,6 +88,16 @@ public class PlayerController3d : MonoBehaviour
 		// Detect SpeedBoost Request.
 		if (Input.GetKey (KeyCode.Space)) {
 			rb.AddForce (transform.forward * thrust, ForceMode.Force);
+			if (!audio.isPlaying) {
+				audio.Play ();
+			}
+		}
+		// Detect breaks request.
+		if (Input.GetKey (KeyCode.B)) {
+			rb.AddForce (-transform.forward * thrust, ForceMode.Force);
+			if (!audio.isPlaying) {
+				audio.Play ();
+			}
 		}
 		// Impose Physical Limits.
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity, topSpeed);

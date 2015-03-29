@@ -39,13 +39,13 @@ public class GameController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		score = 0;
-		UpdateScore();
-
-		restartText.text = "";
-		gameOverText.text = "";
-		gameOver = false;
-		restart = false;
+//		score = 0;
+//		UpdateScore();
+//
+//		restartText.text = "";
+//		gameOverText.text = "";
+//		gameOver = false;
+//		restart = false;
 
 		//StartCoroutine (SpawnWaves());
 	}
@@ -75,11 +75,11 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (restart) {
-			if (Input.GetKeyDown(KeyCode.R)){
-				Application.LoadLevel(Application.loadedLevel);
-			}
-		}
+//		if (restart) {
+//			if (Input.GetKeyDown(KeyCode.R)){
+//				Application.LoadLevel(Application.loadedLevel);
+//			}
+//		}
 	
 	}
 }
