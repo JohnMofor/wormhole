@@ -16,11 +16,6 @@ public class FollowPlayer3d : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		transform.position = playerTransform.position;
-
-		transform.rotation = Quaternion.Euler (playerTransform.rotation.eulerAngles.x,
-		                                      playerTransform.rotation.eulerAngles.y,
-		                                      playerTransform.rotation.eulerAngles.z);
 		//transform.rotation = playerTransform.rotation;
 
 	}
