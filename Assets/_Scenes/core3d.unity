@@ -378,7 +378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 639126995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332a87f89651c604bb6e416f588d73a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 20790f69ffb4d2341b6fa0766b1fdf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hazard: {fileID: 118478, guid: 2497211b384488e4797da392321c3724, type: 2}
@@ -963,6 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 2
+  stability: .300000012
+  stabilitySpeed: 2
   keyboardVerticalSensitivity: 10
   keyboardHorizontalSensitivity: 10
   mouseVerticalSensitivity: .0299999993
@@ -977,20 +979,23 @@ MonoBehaviour:
   hyperSpeedMaxSpeed: 10000
   hyperSpeedFOV_inSmooth: 2
   hyperSpeedFOV_outSmooth: .75
-  hyperSpeedEngineParticleSize: .00999999978
-  hyperSpeedFOVMax: 100
+  hyperSpeedEngineParticleSize: .00499999989
+  hyperSpeedFOVMax: 70
+  hyperSpeedFOVExit: .5
+  invertX: 0
+  invertY: 0
+  useMouse: 1
+  useForcesForRotation: 0
   boundary:
     xMin: 0
     xMax: 0
     zMin: 0
     zMax: 0
-  invertX: 0
-  invertY: 0
-  useMouse: 1
-  useForcesForRotation: 0
   shotSpawn: {fileID: 0}
+  thrusterSFX: {fileID: 8300000, guid: 44548ebdff3137a41858746367b4c7fd, type: 3}
+  hyperSpeedSFX: {fileID: 8300000, guid: fe24fe255fb039f46a02d737d9ffc888, type: 3}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
-  engine: {fileID: 2094473026}
+  engine: {fileID: 2094473024}
 --- !u!82 &1771095180
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1000,7 +1005,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 44548ebdff3137a41858746367b4c7fd, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: .333999991
   m_Pitch: 1
@@ -1011,7 +1016,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1192,7 +1197,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1820849579}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 27e03c8119cd4b64fbdfd5a0f4b03571, type: 2}
 --- !u!1001 &1860719294
 Prefab:
   m_ObjectHideFlags: 0
@@ -1447,8 +1452,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
---- !u!15 &2094473026
-EllipsoidParticleEmitter:
-  m_PrefabParentObject: {fileID: 1500000, guid: cdf901dfb9b0045c0898cc8fc12f8238,
+--- !u!26 &2094473024
+ParticleRenderer:
+  m_PrefabParentObject: {fileID: 2600000, guid: cdf901dfb9b0045c0898cc8fc12f8238,
     type: 2}
   m_PrefabInternal: {fileID: 732629199}

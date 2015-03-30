@@ -16,8 +16,8 @@ public class GameController : MonoBehaviour {
 	public Text restartText;
 	public Text gameOverText;
 
-	private bool restart;
-	private bool gameOver;
+//	private bool restart;
+//	private bool gameOver;
 
 	private int score;
 	
@@ -32,46 +32,46 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void GameOver() {
-		gameOverText.text = "Game Over!";
-		gameOver = true;
+//		gameOverText.text = "Game Over!";
+//		gameOver = true;
 
 	}
 	
 	// Use this for initialization
 	void Start () {
-//		score = 0;
-//		UpdateScore();
-//
-//		restartText.text = "";
-//		gameOverText.text = "";
-//		gameOver = false;
+		score = 0;
+		UpdateScore();
+
+		restartText.text = "";
+		gameOverText.text = "";
+	//	gameOver = false;
 //		restart = false;
 
 		//StartCoroutine (SpawnWaves());
 	}
 
-
-	IEnumerator SpawnWaves() {
-		yield return new WaitForSeconds(startWait);
-		while(true) {
-			for (int i = 0; i < hazardCount; i++) {
-				Vector3 spawnPosition = new Vector3(
-					Random.Range(-spawnValues.x, spawnValues.x), 
-					spawnValues.y, 
-					spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (hazard, spawnPosition, spawnRotation);
-				yield return new WaitForSeconds(spawnWait);
-			}
-			yield return new WaitForSeconds(waveWait);
-
-			if (gameOver) {
-				restartText.text = "Press 'r' to Restart";
-				restart = true;
-				break;
-			}
-		}
-	}
+//
+//	IEnumerator SpawnWaves() {
+//		yield return new WaitForSeconds(startWait);
+//		while(true) {
+//			for (int i = 0; i < hazardCount; i++) {
+//				Vector3 spawnPosition = new Vector3(
+//					Random.Range(-spawnValues.x, spawnValues.x), 
+//					spawnValues.y, 
+//					spawnValues.z);
+//				Quaternion spawnRotation = Quaternion.identity;
+//				Instantiate (hazard, spawnPosition, spawnRotation);
+//				yield return new WaitForSeconds(spawnWait);
+//			}
+//			yield return new WaitForSeconds(waveWait);
+//
+//			if (gameOver) {
+//				restartText.text = "Press 'r' to Restart";
+//				restart = true;
+//				break;
+//			}
+//		}
+//	}
 
 	// Update is called once per frame
 	void Update () {
