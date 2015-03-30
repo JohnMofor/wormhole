@@ -8,6 +8,9 @@ public class CameraController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		if (playerCameraPlaceholder == null) {
+			return;
+		}
 		transform.position = playerCameraPlaceholder.position;
 		transform.rotation = Quaternion.Euler (playerCameraPlaceholder.rotation.eulerAngles.x,
 		                                      playerCameraPlaceholder.rotation.eulerAngles.y,
