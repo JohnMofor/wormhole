@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
 
 	public GameObject hazard;
@@ -11,73 +12,78 @@ public class GameController : MonoBehaviour {
 	public float startWait;
 	public float spawnWait;
 	public float waveWait;
-
 	public Text scoreText;
 	public Text restartText;
 	public Text gameOverText;
-
 	private bool restart;
 	private bool gameOver;
-
 	private int score;
 	
-	
-	void UpdateScore() {
-		scoreText.text = "Score: " + score.ToString();
+	void UpdateScore ()
+	{
+		scoreText.text = "Score: " + score.ToString ();
 	}
 
-	public void AddScore(int newScoreValue) {
+	public void AddScore (int newScoreValue)
+	{
 		score += newScoreValue;
-		UpdateScore();
+		UpdateScore ();
 	}
 
-	public void GameOver() {
+	public void GameOver ()
+	{
 		gameOverText.text = "Game Over!";
 		gameOver = true;
 
 	}
 	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		score = 0;
-		UpdateScore();
+		UpdateScore ();
 
 		restartText.text = "";
 		gameOverText.text = "";
 		gameOver = false;
 		restart = false;
 
-		StartCoroutine (SpawnWaves());
+		//StartCoroutine (SpawnWaves());
 	}
 
-
-	IEnumerator SpawnWaves() {
-		yield return new WaitForSeconds(startWait);
-		while(true) {
-			for (int i = 0; i < hazardCount; i++) {
-				Vector3 spawnPosition = new Vector3(
-					Random.Range(-spawnValues.x, spawnValues.x), 
-					spawnValues.y, 
-					spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (hazard, spawnPosition, spawnRotation);
-				yield return new WaitForSeconds(spawnWait);
-			}
-			yield return new WaitForSeconds(waveWait);
-
-			if (gameOver) {
-				restartText.text = "Press 'r' to Restart";
-				restart = true;
-				break;
-			}
-		}
-	}
+//
+//	IEnumerator SpawnWaves() {
+//		yield return new WaitForSeconds(startWait);
+//		while(true) {
+//			for (int i = 0; i < hazardCount; i++) {
+//				Vector3 spawnPosition = new Vector3(
+//					Random.Range(-spawnValues.x, spawnValues.x), 
+//					spawnValues.y, 
+//					spawnValues.z);
+//				Quaternion spawnRotation = Quaternion.identity;
+//				Instantiate (hazard, spawnPosition, spawnRotation);
+//				yield return new WaitForSeconds(spawnWait);
+//			}
+//			yield return new WaitForSeconds(waveWait);
+//
+//			if (gameOver) {
+//				restartText.text = "Press 'r' to Restart";
+//				restart = true;
+//				break;
+//			}
+//		}
+//	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+		if (gameOver) {
+			restartText.text = "Press 'r' to Restart";
+			restart = true;
+		}
 		if (restart) {
-			if (Input.GetKeyDown(KeyCode.R)){
-				Application.LoadLevel(Application.loadedLevel);
+			if (Input.GetKeyDown (KeyCode.R)) {
+				Application.LoadLevel (Application.loadedLevel);
 			}
 		}
 	
