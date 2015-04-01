@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
 
 	public GameObject hazard;
@@ -11,41 +12,41 @@ public class GameController : MonoBehaviour {
 	public float startWait;
 	public float spawnWait;
 	public float waveWait;
-
 	public Text scoreText;
 	public Text restartText;
 	public Text gameOverText;
-
-//	private bool restart;
-//	private bool gameOver;
-
+	private bool restart;
+	private bool gameOver;
 	private int score;
 	
-	
-	void UpdateScore() {
-		scoreText.text = "Score: " + score.ToString();
+	void UpdateScore ()
+	{
+		scoreText.text = "Score: " + score.ToString ();
 	}
 
-	public void AddScore(int newScoreValue) {
+	public void AddScore (int newScoreValue)
+	{
 		score += newScoreValue;
-		UpdateScore();
+		UpdateScore ();
 	}
 
-	public void GameOver() {
-//		gameOverText.text = "Game Over!";
-//		gameOver = true;
+	public void GameOver ()
+	{
+		gameOverText.text = "Game Over!";
+		gameOver = true;
 
 	}
 	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		score = 0;
-		UpdateScore();
+		UpdateScore ();
 
 		restartText.text = "";
 		gameOverText.text = "";
-	//	gameOver = false;
-//		restart = false;
+		gameOver = false;
+		restart = false;
 
 		//StartCoroutine (SpawnWaves());
 	}
@@ -74,12 +75,17 @@ public class GameController : MonoBehaviour {
 //	}
 
 	// Update is called once per frame
-	void Update () {
-//		if (restart) {
-//			if (Input.GetKeyDown(KeyCode.R)){
-//				Application.LoadLevel(Application.loadedLevel);
-//			}
-//		}
+	void Update ()
+	{
+		if (gameOver) {
+			restartText.text = "Press 'r' to Restart";
+			restart = true;
+		}
+		if (restart) {
+			if (Input.GetKeyDown (KeyCode.R)) {
+				Application.LoadLevel (Application.loadedLevel);
+			}
+		}
 	
 	}
 }

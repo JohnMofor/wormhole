@@ -252,7 +252,7 @@ Prefab:
       objectReference: {fileID: 2051277392}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadScene
+      value: loadTutorialLevel
       objectReference: {fileID: 0}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -273,6 +273,7 @@ GameObject:
   - 92: {fileID: 1542273746}
   - 124: {fileID: 1542273745}
   - 81: {fileID: 1542273744}
+  - 45: {fileID: 1542273749}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -345,6 +346,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!45 &1542273749
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1542273743}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: b8f20d5ca50d16143afc11f5e4af6fc1, type: 2}
 --- !u!1 &1740890246
 GameObject:
   m_PrefabParentObject: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
@@ -569,7 +578,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885341011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9208fb0b242048b4cb7ab1344b9d71a6, type: 3}
+  m_Script: {fileID: 11500000, guid: e9274766004e7d04f92aff4e88416b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2051277386
@@ -589,7 +598,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2051277386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9208fb0b242048b4cb7ab1344b9d71a6, type: 3}
+  m_Script: {fileID: 11500000, guid: e9274766004e7d04f92aff4e88416b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2054847369
@@ -681,7 +690,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11417062, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_Text
-      value: Play
+      value: Open World
       objectReference: {fileID: 0}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -697,7 +706,7 @@ Prefab:
       objectReference: {fileID: 1885341013}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadScene
+      value: loadOpenWorld
       objectReference: {fileID: 0}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

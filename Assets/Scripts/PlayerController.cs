@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 [System.Serializable]
 public class Boundary
 {
 	public float xMin, xMax, zMin, zMax;
-
+	
 }
 
 public class PlayerController : MonoBehaviour
@@ -14,27 +15,47 @@ public class PlayerController : MonoBehaviour
 	// Public members.
 	public float speed;
 	public float tilt;
-	public bool enableTilt = true;
-	public float fireRate;
-	public Boundary boundary;
-	public GameObject shot;
 	public float thrust;
 	public float topSpeed = 50;
-	public bool followMouse = true;
-	public Transform shotSpawn;
-	public Quaternion shipRotateTowards;
 	public float rotationSpeed = 4.0F;
+	public float horizontalPadding = 5F;
+	public float verticalPadding = 5F;
+	public float fireRate;
+
+	public bool enableTilt = true;
+	public bool followMouse = true;
+
+	public Quaternion shipRotateTowards;
+
+	public Transform shotSpawn;
+
+	public GameObject playerExplosion;
+	public GameObject backgroundImage;
+	public GameObject shot;
+
+
+
+	// Private
+	private Boundary boundary = new Boundary();
 	private Rigidbody rb;
 	private float previousY;
-	
-	// Debug
-	public GameObject playerExplosion;
+	private Renderer backgroundRenderer;
+
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
 		shipRotateTowards = rb.rotation;
 		previousY = shipRotateTowards.eulerAngles.y;
+		if (backgroundImage) {
+			backgroundRenderer = backgroundImage.GetComponent<Renderer> ();
+			boundary.xMin = backgroundRenderer.bounds.center.x - backgroundRenderer.bounds.extents.x + horizontalPadding;
+			boundary.xMax = backgroundRenderer.bounds.center.x + backgroundRenderer.bounds.extents.x - horizontalPadding;
+			boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
+			boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
+		} else {
+			throw new UnityException(gameObject.name + " --Background image not set!");
+		}
 	}
 	
 	// Update For non-phsycis updates.
@@ -70,6 +91,11 @@ public class PlayerController : MonoBehaviour
 		previousY = slerpComp.eulerAngles.y;
 		// Lateral motion?
 		//rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, rb.velocity.x * -tilt);
+
+		// Impose physical limits
+		float x = Mathf.Clamp (transform.position.x, boundary.xMin, boundary.xMax);
+		float z = Mathf.Clamp (transform.position.z, boundary.zMin, boundary.zMax);
+		transform.position = new Vector3 (x, transform.position.y, z);
 
 	}
 

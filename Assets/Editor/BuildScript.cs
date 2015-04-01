@@ -8,7 +8,7 @@ class BuildScript {
 			throw new Exception ("UNITY_BUILD_TARGET -system property not defined, aborting.");
 		}
 
-		string[] scenes = { "Assets/_Scenes/Main.unity" };
+		string[] scenes = { "Assets/_Scenes/startMenu.unity", "Assets/_Scenes/tutorial2d.unity", "Assets/_Scenes/core3d.unity" };
 		
 		string error = BuildPipeline.BuildPlayer (
 			scenes, 
