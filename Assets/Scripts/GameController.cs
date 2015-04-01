@@ -36,6 +36,11 @@ public class GameController : MonoBehaviour
 		gameOver = true;
 
 	}
+
+	public void ReachedDestination() {
+		gameOverText.text = "Congratulations!";
+		gameOver = true;
+	}
 	
 	// Use this for initialization
 	void Start ()
