@@ -54,7 +54,7 @@ ParticleAnimator:
     rgba: 184549375
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: 1
+  sizeGrow: 0
   rndForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
   damping: 1
