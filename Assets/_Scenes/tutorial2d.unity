@@ -412,7 +412,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -1468,8 +1468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   tilt: 2
-  thrust: 200
-  topSpeed: 50
+  thrust: 50
+  topSpeed: 20
   rotationSpeed: 4
   horizontalPadding: 5
   verticalPadding: 5
