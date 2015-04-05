@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 [System.Serializable]
 public class Boundary
 {
@@ -9,52 +8,51 @@ public class Boundary
 	
 }
 
+[RequireComponent (typeof (Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
 
 	// Public members.
-	public float speed;
-	public float tilt;
-	public float thrust;
-	public float topSpeed = 50;
+	public float speed = 1F;
+	public float tilt = 2F;
+	public float thrust = 50F;
+	public float topSpeed = 50F;
 	public float rotationSpeed = 4.0F;
 	public float horizontalPadding = 5F;
 	public float verticalPadding = 5F;
-	public float fireRate;
-
 	public bool enableTilt = true;
 	public bool followMouse = true;
-
 	public Quaternion shipRotateTowards;
-
-	public Transform shotSpawn;
-
 	public GameObject playerExplosion;
 	public GameObject backgroundImage;
-	public GameObject shot;
-
-
 
 	// Private
-	private Boundary boundary = new Boundary();
+	private Boundary boundary = new Boundary ();
 	private Rigidbody rb;
 	private float previousY;
 	private Renderer backgroundRenderer;
 
-
 	void Start ()
 	{
+		checkDependencies();
 		rb = GetComponent<Rigidbody> ();
 		shipRotateTowards = rb.rotation;
 		previousY = shipRotateTowards.eulerAngles.y;
-		if (backgroundImage) {
-			backgroundRenderer = backgroundImage.GetComponent<Renderer> ();
-			boundary.xMin = backgroundRenderer.bounds.center.x - backgroundRenderer.bounds.extents.x + horizontalPadding;
-			boundary.xMax = backgroundRenderer.bounds.center.x + backgroundRenderer.bounds.extents.x - horizontalPadding;
-			boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
-			boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
-		} else {
-			throw new UnityException(gameObject.name + " --Background image not set!");
+
+		// Setting boundaries
+		backgroundRenderer = backgroundImage.GetComponent<Renderer> ();
+		boundary.xMin = backgroundRenderer.bounds.center.x - backgroundRenderer.bounds.extents.x + horizontalPadding;
+		boundary.xMax = backgroundRenderer.bounds.center.x + backgroundRenderer.bounds.extents.x - horizontalPadding;
+		boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
+		boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
+	}
+
+	private void checkDependencies(){
+		if (backgroundImage == null) {
+			throw new UnityException (gameObject.name + " --Background image not set!");
+		}
+		if (playerExplosion == null) {
+			throw new UnityException (gameObject.name + " --playerExplosion Prefab not set!");
 		}
 	}
 	
@@ -65,15 +63,12 @@ public class PlayerController : MonoBehaviour
 		int direction = followMouse ? 1 : -1;
 		Vector3 shipPointTowards = direction * (mouseLocation - transform.position);
 		shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
-
-
-
 	}
 
 	// Update for physics.
 	void FixedUpdate ()
 	{
-		if (Input.GetKey (KeyCode.Space)) {
+		if (Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0 /*left*/)) {
 			Vector3 forwardXZ = new Vector3 (transform.forward.x, 0, transform.forward.z);
 			rb.AddForce (forwardXZ * thrust, ForceMode.Force);
 		}
