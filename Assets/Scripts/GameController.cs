@@ -15,10 +15,14 @@ public class GameController : MonoBehaviour
 	public Text scoreText;
 	public Text restartText;
 	public Text gameOverText;
+	public Canvas pauseCanvas;
+	public Canvas pauseOptionsCanvas;
+	public Canvas pauseAdvancedOptionsCanvas;
 	private bool restart;
 	private bool gameOver;
 	private int score;
-	
+	private bool paused;
+
 	void UpdateScore ()
 	{
 		scoreText.text = "Score: " + score.ToString ();
@@ -52,6 +56,7 @@ public class GameController : MonoBehaviour
 		gameOverText.text = "";
 		gameOver = false;
 		restart = false;
+		paused = false;
 
 		//StartCoroutine (SpawnWaves());
 	}
@@ -82,6 +87,20 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if (!paused) {
+				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
+				pauseCanvas.enabled = true;
+				Time.timeScale = 0;
+				paused = true;
+			}
+			else {
+				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
+				pauseCanvas.enabled = false;
+				Time.timeScale = 1;
+				paused = false;
+			}
+		}
 		if (gameOver) {
 			restartText.text = "Press 'r' to Restart";
 			restart = true;
@@ -91,6 +110,28 @@ public class GameController : MonoBehaviour
 				Application.LoadLevel (Application.loadedLevel);
 			}
 		}
-	
+	}
+
+	public void ResumeGame() {
+		(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
+		pauseCanvas.enabled = false;
+		Time.timeScale = 1;
+	}
+
+	public void PauseOptions() {
+		pauseCanvas.enabled = !pauseCanvas.enabled;
+		pauseOptionsCanvas.enabled = !pauseOptionsCanvas.enabled;
+	}
+
+	public void PauseAdvancedOptions() {
+		pauseOptionsCanvas.enabled = !pauseOptionsCanvas.enabled;
+		pauseAdvancedOptionsCanvas.enabled = !pauseAdvancedOptionsCanvas.enabled;
+	}
+
+	public void QuitGame() {
+		Application.LoadLevel ("startMenu");
+		pauseCanvas.enabled = false;
+		paused = false;
+		Time.timeScale = 1;
 	}
 }
