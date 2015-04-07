@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 	private bool gameOver;
 	private int score;
 	private bool paused;
+	private bool inSettings;
 
 	void UpdateScore ()
 	{
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour
 		gameOver = false;
 		restart = false;
 		paused = false;
+		inSettings = false;
 
 		//StartCoroutine (SpawnWaves());
 	}
@@ -94,7 +96,7 @@ public class GameController : MonoBehaviour
 				Time.timeScale = 0;
 				paused = true;
 			}
-			else {
+			else if (!inSettings) {
 				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
 				pauseCanvas.enabled = false;
 				Time.timeScale = 1;
@@ -121,6 +123,7 @@ public class GameController : MonoBehaviour
 	public void PauseOptions() {
 		pauseCanvas.enabled = !pauseCanvas.enabled;
 		pauseOptionsCanvas.enabled = !pauseOptionsCanvas.enabled;
+		inSettings = !inSettings;
 	}
 
 	public void PauseAdvancedOptions() {
