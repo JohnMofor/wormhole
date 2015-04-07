@@ -3,9 +3,6 @@ using System.Collections;
 
 public class DestinationArrived : MonoBehaviour
 {
-	
-	public GameObject explosion;
-	public GameObject playerExplosion;
 	public GameController gameController;
 	
 	void OnTriggerEnter (Collider other)
@@ -23,17 +20,5 @@ public class DestinationArrived : MonoBehaviour
 			gameController.ReachedDestination ();
 		} 
 		Destroy (other.gameObject);
-	}
-	
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
 	}
 }
