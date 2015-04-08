@@ -690,7 +690,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11417062, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_Text
-      value: Open World
+      value: Arcade
       objectReference: {fileID: 0}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -706,7 +706,7 @@ Prefab:
       objectReference: {fileID: 1885341013}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadOpenWorld
+      value: loadTutorialLevel
       objectReference: {fileID: 0}
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

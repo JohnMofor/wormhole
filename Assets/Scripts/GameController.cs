@@ -115,8 +115,11 @@ public class GameController : MonoBehaviour
 	}
 
 	public void ResumeGame() {
+		Debug.Log ("click outside");
 		(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
 		pauseCanvas.enabled = false;
+		pauseOptionsCanvas.enabled = false;
+		pauseAdvancedOptionsCanvas.enabled = false;
 		Time.timeScale = 1;
 	}
 
