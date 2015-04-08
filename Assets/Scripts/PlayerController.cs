@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
+// For debugging
+using System;
 
 [System.Serializable]
 public class Boundary
@@ -26,6 +30,12 @@ public class PlayerController : MonoBehaviour
 	public GameObject playerExplosion;
 	public GameObject backgroundImage;
 
+	// Public GameObjects
+	public Slider speedSlider;
+	public Slider topSpeedSlider;
+	public Slider rotationSpeedSlider;
+	public Toggle followMouseToggle;
+
 	// Private
 	private Boundary boundary = new Boundary ();
 	private Rigidbody rb;
@@ -45,6 +55,11 @@ public class PlayerController : MonoBehaviour
 		boundary.xMax = backgroundRenderer.bounds.center.x + backgroundRenderer.bounds.extents.x - horizontalPadding;
 		boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
 		boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
+
+		speedSlider.value = speed;
+		topSpeedSlider.value = topSpeed;
+		rotationSpeedSlider.value = rotationSpeed;
+		followMouseToggle.isOn = followMouse;
 	}
 
 	private void checkDependencies(){
@@ -101,6 +116,15 @@ public class PlayerController : MonoBehaviour
 		//Instantiate (playerExplosion, point, Quaternion.identity); // was cool
 		//Debug.DrawRay (ray.origin, ray.direction * 10);
 		return point;
+	}
+
+	public void updateMainSettings() {
+		Console.Write (speedSlider.value);
+		speed = speedSlider.value;
+		topSpeed = topSpeedSlider.value;
+		rotationSpeed = rotationSpeedSlider.value;
+		followMouse = followMouseToggle.isOn;
+
 	}
 
 }
