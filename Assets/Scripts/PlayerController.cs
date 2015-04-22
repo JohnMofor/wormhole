@@ -1,74 +1,118 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
+// For debugging
+using System;
 
 [System.Serializable]
 public class Boundary
 {
 	public float xMin, xMax, zMin, zMax;
-
+	
 }
 
+[RequireComponent (typeof (Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
 
 	// Public members.
-	public float speed;
-	public float tilt;
-	public float fireRate;
-	public Boundary boundary;
-	public GameObject shot;
-	public Transform shotSpawn;
-	private bool haveClicked = false;
-	public Quaternion shipRotateTowards;
-
-
-	// Private members.
+	public float speed = 1F;
+	public float tilt = 2F;
+	public float thrust = 50F;
+	public float topSpeed = 50F;
 	public float rotationSpeed = 4.0F;
-
-	// Debug
+	public float horizontalPadding = 5F;
+	public float verticalPadding = 5F;
+	public bool enableTilt = true;
+	public bool followMouse = true;
+	public Quaternion shipRotateTowards;
 	public GameObject playerExplosion;
+	public GameObject backgroundImage;
 
+	// Public GameObjects
+	public Slider speedSlider;
+	public Slider topSpeedSlider;
+	public Slider rotationSpeedSlider;
+	public Toggle followMouseToggle;
+	public Slider tiltSlider;
+	public Toggle tiltToggle;
+	public Slider thrustSlider;
+
+	// Private
+	private Boundary boundary = new Boundary ();
+	private Rigidbody rb;
+	private float previousY;
+	private Renderer backgroundRenderer;
+
+	void Start ()
+	{
+		checkDependencies();
+		rb = GetComponent<Rigidbody> ();
+		shipRotateTowards = rb.rotation;
+		previousY = shipRotateTowards.eulerAngles.y;
+
+		// Setting boundaries
+		backgroundRenderer = backgroundImage.GetComponent<Renderer> ();
+		boundary.xMin = backgroundRenderer.bounds.center.x - backgroundRenderer.bounds.extents.x + horizontalPadding;
+		boundary.xMax = backgroundRenderer.bounds.center.x + backgroundRenderer.bounds.extents.x - horizontalPadding;
+		boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
+		boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
+
+		speedSlider.value = speed;
+		topSpeedSlider.value = topSpeed;
+		rotationSpeedSlider.value = rotationSpeed;
+		followMouseToggle.isOn = followMouse;
+
+		tiltSlider.value = tilt;
+		thrustSlider.value = thrust;
+		tiltToggle.isOn = enableTilt;
+	}
+
+	private void checkDependencies(){
+		if (backgroundImage == null) {
+			throw new UnityException (gameObject.name + " --Background image not set!");
+		}
+		if (playerExplosion == null) {
+			throw new UnityException (gameObject.name + " --playerExplosion Prefab not set!");
+		}
+	}
 	
-	// Update is called once per frame
+	// Update For non-phsycis updates.
 	void Update ()
 	{
-		Rigidbody rb = GetComponent<Rigidbody> ();
-		if (Input.GetButton ("Fire1")) {
-			Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
-			haveClicked = true;
-			Vector3 shipPointTowards = transform.position - mouseLocation; //-(mouseLocation - transform.position);
-			shipPointTowards.y = 0; // Cancel the y rotation.
-			shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
-		}
-
-		if (haveClicked) {
-			rb.rotation = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
-		}
-
-
-	
+		Vector3 mouseLocation = CastRayToWorld (Input.mousePosition);
+		int direction = followMouse ? 1 : -1;
+		Vector3 shipPointTowards = direction * (mouseLocation - transform.position);
+		shipRotateTowards = Quaternion.LookRotation (shipPointTowards);
 	}
 
 	// Update for physics.
 	void FixedUpdate ()
 	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		if (Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0 /*left*/)) {
+			Vector3 forwardXZ = new Vector3 (transform.forward.x, 0, transform.forward.z);
+			rb.AddForce (forwardXZ * thrust, ForceMode.Force);
+		}
 
-		Rigidbody rb = GetComponent<Rigidbody> ();
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		rb.velocity = movement * speed;
+		rb.velocity = Vector3.ClampMagnitude (rb.velocity, topSpeed);
 
-		rb.position = new Vector3
-		(
-			Mathf.Clamp (rb.position.x, boundary.xMin, boundary.xMax),
-			0.0f,
-			Mathf.Clamp (rb.position.z, boundary.zMin, boundary.zMax)
-		);
+		// Get the plain rotation components.
+		Quaternion slerpComp = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
+		// Get the tilt componenets
+		float tiltComp = enableTilt ? tilt * (slerpComp.eulerAngles.y - previousY) : 0;
+		// Act on rb
+		rb.rotation = Quaternion.Euler (tiltComp, slerpComp.eulerAngles.y, -tiltComp);
+		// Prepare for next update.
+		previousY = slerpComp.eulerAngles.y;
+		// Lateral motion?
+		//rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, rb.velocity.x * -tilt);
 
-		//rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
-
+		// Impose physical limits
+		float x = Mathf.Clamp (transform.position.x, boundary.xMin, boundary.xMax);
+		float z = Mathf.Clamp (transform.position.z, boundary.zMin, boundary.zMax);
+		transform.position = new Vector3 (x, transform.position.y, z);
 
 	}
 
@@ -79,6 +123,24 @@ public class PlayerController : MonoBehaviour
 		//Instantiate (playerExplosion, point, Quaternion.identity); // was cool
 		//Debug.DrawRay (ray.origin, ray.direction * 10);
 		return point;
+	}
+
+	public void updateMainSettings() {
+		speed = speedSlider.value;
+		topSpeed = topSpeedSlider.value;
+		rotationSpeed = rotationSpeedSlider.value;
+		followMouse = followMouseToggle.isOn;
+	}
+
+	public void updateAdvancedSettings() {
+		tilt = tiltSlider.value;
+		enableTilt = tiltToggle.isOn;
+		thrust = thrustSlider.value;
+		if (enableTilt == false) {
+			tiltSlider.interactable = false;
+		} else {
+			tiltSlider.interactable = true;
+		}
 	}
 
 }
