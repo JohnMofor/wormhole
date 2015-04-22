@@ -5,11 +5,9 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-
-
-	public GameObject hazard;
+	
+	private int collected;
 	public Vector3 spawnValues;
-	public int hazardCount;
 	public float startWait;
 	public float spawnWait;
 	public float waveWait;
@@ -56,6 +54,8 @@ public class GameController : MonoBehaviour
 	{
 		score = 0;
 		UpdateScore ();
+
+		collected = 0;
 
 		restartText.text = "";
 		gameOverText.text = "";
@@ -116,6 +116,17 @@ public class GameController : MonoBehaviour
 				Application.LoadLevel (Application.loadedLevel);
 			}
 		}
+	}
+
+	public void collectCollectible(GameObject collectible) {
+		collected += 1;
+	}
+
+	public bool allCollected() {
+		if (collected == 3) {
+			return true;
+		} else
+			return false;
 	}
 
 	public void ResumeGame() {
