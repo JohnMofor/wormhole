@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-
-
-	public GameObject hazard;
+	
+	private int collected;
 	public Vector3 spawnValues;
-	public int hazardCount;
 	public float startWait;
 	public float spawnWait;
 	public float waveWait;
@@ -18,6 +17,9 @@ public class GameController : MonoBehaviour
 	public Canvas pauseCanvas;
 	public Canvas pauseOptionsCanvas;
 	public Canvas pauseAdvancedOptionsCanvas;
+	public GameObject pausePanel;
+	public GameObject pauseOptionsPanel;
+	public GameObject pauseAdvancedOptionsPanel;
 	private bool restart;
 	private bool gameOver;
 	private int score;
@@ -52,6 +54,8 @@ public class GameController : MonoBehaviour
 	{
 		score = 0;
 		UpdateScore ();
+
+		collected = 0;
 
 		restartText.text = "";
 		gameOverText.text = "";
@@ -114,8 +118,18 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	public void collectCollectible(GameObject collectible) {
+		collected += 1;
+	}
+
+	public bool allCollected() {
+		if (collected == 3) {
+			return true;
+		} else
+			return false;
+	}
+
 	public void ResumeGame() {
-		Debug.Log ("click outside");
 		(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
 		pauseCanvas.enabled = false;
 		pauseOptionsCanvas.enabled = false;
@@ -139,5 +153,28 @@ public class GameController : MonoBehaviour
 		pauseCanvas.enabled = false;
 		paused = false;
 		Time.timeScale = 1;
+	}
+
+	public void PauseOnClick() {
+//		RectTransform pauseTransform = (RectTransform)pausePanel.transform;
+//		RectTransform canvasTransform = (RectTransform)pauseCanvas.transform;
+//		Debug.Log (pauseTransform.rect.position);
+//		Debug.Log (pauseTransform.rect.size);
+//		Debug.Log (Input.mousePosition);
+//		Debug.Log ("Canvas" + canvasTransform.rect.Contains (Input.mousePosition));
+//		if (pauseTransform.rect.Contains(Input.mousePosition)) {
+//			Debug.Log (true);
+//			ResumeGame();
+//		}
+//		else {
+//			Debug.Log (false);
+//		}
+//		if (pauseCanvas.enabled) {
+//			
+//		} else if (pauseOptionsCanvas.enabled) {
+//
+//		} else {
+//
+//		}
 	}
 }

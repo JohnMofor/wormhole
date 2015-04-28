@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestinationArrived : MonoBehaviour
+public class Collectible : MonoBehaviour
 {
 	public GameController gameController;
 	
@@ -13,15 +13,10 @@ public class DestinationArrived : MonoBehaviour
 		if (other.tag == "Boundary") {
 			return;
 		}
-		
-		
 		if (other.tag == "Player") {
-			//Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
-			if (gameController.allCollected() == true) {
-				gameController.ReachedDestination ();
-				Destroy (other.gameObject);
-			}
-			else Debug.Log ("collect the rest!");
+			gameController.collectCollectible(gameObject);
+			Destroy (gameObject);
+			gameController.AddScore(10);
 		}
 	}
 }

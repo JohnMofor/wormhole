@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
 	public Slider topSpeedSlider;
 	public Slider rotationSpeedSlider;
 	public Toggle followMouseToggle;
+	public Slider tiltSlider;
+	public Toggle tiltToggle;
+	public Slider thrustSlider;
 
 	// Private
 	private Boundary boundary = new Boundary ();
@@ -60,6 +63,10 @@ public class PlayerController : MonoBehaviour
 		topSpeedSlider.value = topSpeed;
 		rotationSpeedSlider.value = rotationSpeed;
 		followMouseToggle.isOn = followMouse;
+
+		tiltSlider.value = tilt;
+		thrustSlider.value = thrust;
+		tiltToggle.isOn = enableTilt;
 	}
 
 	private void checkDependencies(){
@@ -119,12 +126,21 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void updateMainSettings() {
-		Console.Write (speedSlider.value);
 		speed = speedSlider.value;
 		topSpeed = topSpeedSlider.value;
 		rotationSpeed = rotationSpeedSlider.value;
 		followMouse = followMouseToggle.isOn;
+	}
 
+	public void updateAdvancedSettings() {
+		tilt = tiltSlider.value;
+		enableTilt = tiltToggle.isOn;
+		thrust = thrustSlider.value;
+		if (enableTilt == false) {
+			tiltSlider.interactable = false;
+		} else {
+			tiltSlider.interactable = true;
+		}
 	}
 
 }
