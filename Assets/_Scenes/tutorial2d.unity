@@ -1027,9 +1027,12 @@ MonoBehaviour:
   pausePanel: {fileID: 1109130402}
   pauseOptionsPanel: {fileID: 811403301}
   pauseAdvancedOptionsPanel: {fileID: 1921561361}
-  pauseSkin: {fileID: 0}
-  resumeSkin: {fileID: 0}
-  advancedSkin: {fileID: 0}
+  pauseSkin: {fileID: 11400000, guid: a558b91e13fe84840bcb67977734c3f6, type: 2}
+  resumeSkin: {fileID: 11400000, guid: 2868305646c2a484fa1b04a73f43186b, type: 2}
+  settingsSkin: {fileID: 11400000, guid: 0e0a74dd3db6b2145bd73fa036de8a15, type: 2}
+  quitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
+  backSkin: {fileID: 11400000, guid: e29a75b664f35ef41be3ee2a2198efd0, type: 2}
+  advancedSkin: {fileID: 11400000, guid: 5668a2676a1b8884c935d833353b3377, type: 2}
 --- !u!4 &587469860
 Transform:
   m_ObjectHideFlags: 0
