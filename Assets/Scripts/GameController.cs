@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
 	}
 
 	public void ReachedDestination() {
-		gameOverText.text = "Congratulations!";
+		gameOverText.text = "Good Job!";
 		gameOver = true;
 	}
 	
@@ -168,7 +168,6 @@ public class GameController : MonoBehaviour
 			}
 			GUI.EndGroup ();
 		} else {
-			Debug.Log("in game");
 			GUI.skin = pauseSkin;
 			if (GUI.Button(new Rect(Screen.width - 60, 10, 50, 50),"")) {
 				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
