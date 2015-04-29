@@ -1027,6 +1027,9 @@ MonoBehaviour:
   pausePanel: {fileID: 1109130402}
   pauseOptionsPanel: {fileID: 811403301}
   pauseAdvancedOptionsPanel: {fileID: 1921561361}
+  pauseSkin: {fileID: 0}
+  resumeSkin: {fileID: 0}
+  advancedSkin: {fileID: 0}
 --- !u!4 &587469860
 Transform:
   m_ObjectHideFlags: 0

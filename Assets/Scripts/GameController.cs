@@ -26,6 +26,10 @@ public class GameController : MonoBehaviour
 	private bool paused;
 	private bool inSettings;
 
+	public GUISkin pauseSkin;
+	public GUISkin resumeSkin;
+	public GUISkin advancedSkin;
+
 	void UpdateScore ()
 	{
 		scoreText.text = "Score: " + score.ToString ();
@@ -63,32 +67,7 @@ public class GameController : MonoBehaviour
 		restart = false;
 		paused = false;
 		inSettings = false;
-
-		//StartCoroutine (SpawnWaves());
 	}
-
-//
-//	IEnumerator SpawnWaves() {
-//		yield return new WaitForSeconds(startWait);
-//		while(true) {
-//			for (int i = 0; i < hazardCount; i++) {
-//				Vector3 spawnPosition = new Vector3(
-//					Random.Range(-spawnValues.x, spawnValues.x), 
-//					spawnValues.y, 
-//					spawnValues.z);
-//				Quaternion spawnRotation = Quaternion.identity;
-//				Instantiate (hazard, spawnPosition, spawnRotation);
-//				yield return new WaitForSeconds(spawnWait);
-//			}
-//			yield return new WaitForSeconds(waveWait);
-//
-//			if (gameOver) {
-//				restartText.text = "Press 'r' to Restart";
-//				restart = true;
-//				break;
-//			}
-//		}
-//	}
 
 	// Update is called once per frame
 	void Update ()
@@ -118,6 +97,23 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	void OnGUI() {
+		if (paused) {
+			GUI.BeginGroup(new Rect(Screen.width/2-150,Screen.height/2-150,350,450));
+			GUI.Box(new Rect(0,0,300,300),"");
+			GUI.Label (new Rect (0, 50, 100, 20), "Settings");
+			GUI.skin = resumeSkin;
+			GUI.Button(new Rect(0,25,100,20),"Resume");
+			GUI.EndGroup ();
+		} else {
+			GUI.skin = pauseSkin;
+			if (GUI.Button(new Rect(Screen.width, 0, 20, 20),"")) {
+				Time.timeScale = 0;
+				paused = true;
+			}
+		}
+	}
+	
 	public void collectCollectible(GameObject collectible) {
 		collected += 1;
 	}
