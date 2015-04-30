@@ -70,11 +70,11 @@ public class LevelSelectionManager : MonoBehaviour {
 		}
 		GUI.skin = wormholeSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 100, 400, 100), "")) {
-			Application.LoadLevel(2);
+			Application.LoadLevel(4);
 		}
 		GUI.skin = blackholeSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 200, 400, 100), "")) {
-			Application.LoadLevel(4);
+			Application.LoadLevel(5);
 		}
 
 		GUI.skin = backSkin;

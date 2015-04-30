@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/level_solarSystem.unity
   - enabled: 1
     path: Assets/_Scenes/level_wormholes.unity
+  - enabled: 1
+    path: Assets/_Scenes/level_blackholes.unity
