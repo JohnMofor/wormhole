@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 	//// Private
 	private Boundary boundary = new Boundary ();
 	private Rigidbody rb;
-	new private ParticleRenderer particleRenderer;
+	private ParticleRenderer particleRenderer;
 	private Renderer backgroundRenderer;
 	// /*not in 2d*/ private float previousY;
 	private Vector3 startScale;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 		topSpeedSlider.value = topSpeed;
 		rotationSpeedSlider.value = rotationSpeed;
 		followMouseToggle.isOn = followMouse;
-		tiltSlider.value = 0f;
+//		tiltSlider.value = 0f;
 		thrustSlider.value = thrust;
 		tiltToggle.isOn = false;
 
