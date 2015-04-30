@@ -10,23 +10,24 @@ public class GameController : MonoBehaviour
 	public Text collectibleText;
 	public Text restartText;
 	public Text gameOverText;
-	public GUISkin tryAgainSkin;
-	public GUISkin exitSkin;
-	public GUISkin restartSkin;
-	public GUISkin backToMenuSkin;
-	public GUISkin nextLevelSkin;
-	public GUISkin greatJobSkin;
+
 	private bool restart;
 	private bool gameOver;
 	private bool victory;
 	private bool reachedDestination;
 	private int score;
 
+	public GUISkin tryAgainSkin;
+	public GUISkin exitSkin;
+	public GUISkin restartSkin;
+	public GUISkin backToMenuSkin;
+	public GUISkin nextLevelSkin;
+	public GUISkin greatJobSkin;
+
 	// Use this for initialization
 	void Start ()
 	{
 		collected = 0;
-		UpdateCollectibleText ();
 
 		restartText.text = "";
 		gameOverText.text = "";
@@ -99,15 +100,13 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	private void UpdateCollectibleText ()
-	{
-		collectibleText.text = (totalNumberOfCollectibles - collected).ToString();
+	public int collectiblesRemaining() {
+		return totalNumberOfCollectibles - collected;
 	}
-	
+
 	public void AddCollectible ()
 	{
 		collected += 1;
-		UpdateCollectibleText ();
 	}
 	
 	public void GameOver ()

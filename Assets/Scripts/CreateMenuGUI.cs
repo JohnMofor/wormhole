@@ -25,14 +25,14 @@ public class CreateMenuGUI : MonoBehaviour {
 			GUI.BeginGroup (new Rect (Screen.width / 2 - 350, Screen.height / 2 - 300, 700, 600));
 			GUI.Box (new Rect (0, 0, 700, 600), "");
 			GUI.Label (new Rect (300, 50, 100, 20), "Credits", titleStyle);
-			GUI.Label (new Rect (25, 100, 100, 20), "Producer: Hannah Harris", textStyle);
-			GUI.Label (new Rect (25, 150, 100, 20), "Programmers: John Mofor, Kevin Wang, Miguel Rodriguez", textStyle);
-			GUI.Label (new Rect (25, 200, 100, 20), "Art & Music: Hannah Harris", textStyle);
-			GUI.Label (new Rect (25, 300, 100, 20), "Sounds courtesy of: ", textStyle);
-			GUI.Label (new Rect (25, 350, 100, 20), "Images courtesy of: NASA, ESA, and The Hubble Heritage Team", textStyle);
-			GUI.Label (new Rect (207, 400, 100, 20), "Images recolored and edited by Hannah Harris", textStyle);
-			GUI.Label (new Rect (25, 550, 100, 20), "[copyright stuff] © 2015  All Rights Reserved", textStyle);
-
+			GUI.Label (new Rect (25, 150, 100, 20), "Created By: Hannah Harris, John Mofor, Kevin Wang, Miguel Rodriguez", textStyle);
+			GUI.Label (new Rect (25, 225, 100, 20), "This game uses sounds from freesound made by the following users:", textStyle);
+			GUI.Label (new Rect (75, 250, 100, 20), "sergeeo, fins, Robinhood76", textStyle);
+			GUI.Label (new Rect (25, 325, 100, 20), "This game uses music from Purple Planet Royalty Free Music.", textStyle);
+			GUI.Label (new Rect (75, 350, 100, 20), "http://www.purple-planet.com", textStyle);
+			GUI.Label (new Rect (25, 425, 100, 20), "This game uses images from NASA, ESA, and The Hubble Heritage Team", textStyle);
+			GUI.Label (new Rect (75, 450, 100, 20), "(STScI/AURA) Images recolored and edited by Hannah Harris", textStyle);
+			GUI.Label (new Rect (25, 550, 100, 20), "© 2015  Attribution-NonCommercial-NoDerivs CC BY-NC-ND", textStyle);
 
 			GUI.skin = QuitSkin;
 			if (GUI.Button (new Rect(650, 10, 40, 40), "")) { 

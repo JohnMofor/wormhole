@@ -1569,6 +1569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1844056653}
+  gameController: {fileID: 587469859}
   defaultTopSpeed: 50
   defaultSpeed: 1
   defaultRotationSpeed: 1
@@ -1581,6 +1582,9 @@ MonoBehaviour:
   backSkin: {fileID: 11400000, guid: e29a75b664f35ef41be3ee2a2198efd0, type: 2}
   advancedSkin: {fileID: 11400000, guid: 5668a2676a1b8884c935d833353b3377, type: 2}
   starsRemainingSkin: {fileID: 11400000, guid: e30a42cb669a2a84f8afe13b727efd3e, type: 2}
+  oneStar: {fileID: 11400000, guid: 3bdf0b8f557b05a4b8b9866f6302d3b7, type: 2}
+  twoStar: {fileID: 11400000, guid: 9009a907f86a9b84aa549586a29cc852, type: 2}
+  threeStar: {fileID: 11400000, guid: e3b35f137207d234d9b85f3d0a6382e5, type: 2}
 --- !u!1 &594128233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,7 +3102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1435788831
 RectTransform:
   m_ObjectHideFlags: 0
