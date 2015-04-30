@@ -122,6 +122,15 @@ public class GameController : MonoBehaviour
 			gameOverText.text = "Good Job!";
 			gameOver = true;
 			victory = true;
+
+			string currentLevel = Application.loadedLevelName;
+			int nextLevelNumber = LevelSelectionManager.NextLevelOf(currentLevel);
+			if (nextLevelNumber !=-1)
+			{
+				LevelSelectionManager.UnlockNextLevel(nextLevelNumber);
+			}
+
+
 			return true;
 		} /*else {
 			float currX = player.transform.position.x;
