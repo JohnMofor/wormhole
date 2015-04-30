@@ -35,6 +35,10 @@ public class PauseMenuController : MonoBehaviour {
 	public GUISkin threeStar;
 	public GUISkin fourStar;
 	public GUISkin fiveStar;
+	public GUISkin sixStar;
+	public GUISkin sevenStar;
+	public GUISkin eightStar;
+	public GUISkin nineStar;
 
 	private Dictionary<int, GUISkin> stars;
 
@@ -55,10 +59,10 @@ public class PauseMenuController : MonoBehaviour {
 		stars.Add(3, threeStar);
 		stars.Add(4, fourStar);
 		stars.Add(5, fiveStar);
-		stars.Add(6, fiveStar);
-		stars.Add(7, fiveStar);
-		stars.Add(8, fiveStar);
-		stars.Add(9, fiveStar);
+		stars.Add(6, sixStar);
+		stars.Add(7, sevenStar);
+		stars.Add(8, eightStar);
+		stars.Add(9, nineStar);
 	}
 
 	void Update ()
