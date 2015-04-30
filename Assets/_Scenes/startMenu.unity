@@ -258,6 +258,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
+    - target: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400144, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
@@ -370,6 +374,8 @@ MonoBehaviour:
   PlaySkin: {fileID: 11400000, guid: 30f5a1c408774a44baf33f408b9c3176, type: 2}
   TutorialSkin: {fileID: 11400000, guid: c639101840025804382046d972ee20a1, type: 2}
   ExitSkin: {fileID: 11400000, guid: ef00fef708448de49be8b163a28cf752, type: 2}
+  CreditsSkin: {fileID: 11400000, guid: 30f5a1c408774a44baf33f408b9c3176, type: 2}
+  QuitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
 --- !u!1 &1740890246
 GameObject:
   m_PrefabParentObject: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
@@ -500,6 +506,10 @@ Prefab:
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400144, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
@@ -728,6 +738,10 @@ Prefab:
     - target: {fileID: 11456630, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400144, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
