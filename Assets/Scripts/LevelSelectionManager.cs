@@ -11,7 +11,8 @@ public class LevelSelectionManager : MonoBehaviour {
 	{
 		{"tutorial2d",2},
 		{"level_solarSystem",4},
-		{"level_wormholes",-1}
+		{"level_wormholes",5},
+		{"level_blackholes",-1}
 	};
 
 	void Awake (){
