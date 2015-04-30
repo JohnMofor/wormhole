@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 	//// Private
 	private Boundary boundary = new Boundary ();
 	private Rigidbody rb;
+	new private ParticleRenderer particleRenderer;
 	private Renderer backgroundRenderer;
 	private float previousY;
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
 		AtDestination2,
 		Done}
 	;
-	TeleportationState teleportationState = TeleportationState.Done;
+	private TeleportationState teleportationState = TeleportationState.Done;
 
 	void Start ()
 	{
@@ -85,10 +86,14 @@ public class PlayerController : MonoBehaviour
 	private void checkDependencies ()
 	{
 		if (backgroundImage == null) {
-			throw new UnityException (gameObject.name + " --Background image not set!");
+			throw new MissingComponentException (gameObject.name + " --Background image not set!");
 		}
 		if (playerExplosion == null) {
-			throw new UnityException (gameObject.name + " --playerExplosion Prefab not set!");
+			throw new MissingComponentException (gameObject.name + " --playerExplosion Prefab not set!");
+		}
+		particleRenderer = GetComponentInChildren<ParticleRenderer> ();
+		if (particleRenderer == null) {
+			throw new MissingComponentException (gameObject.name + " --no particle renderer found!");
 		}
 	}
 	
@@ -214,14 +219,16 @@ public class PlayerController : MonoBehaviour
 		// Go to destination 1.
 		yield return StartCoroutine (translate (from, timeToDestination1, transform.localScale));
 		this.teleportationState = TeleportationState.AtDestination1;
-		// At destination 1. reduce the scale.
+		// At destination 1. stop thrusters and reduce the scale.
+		this.particleRenderer.enabled = false;
 		yield return StartCoroutine (translate (transform.position, timeAtDestination1, wormholeScale));
 		this.teleportationState = TeleportationState.ToDestination2;
 		// Go to destination 2.
 		yield return StartCoroutine (translate (to, timeToDestination2, transform.localScale));
 		this.teleportationState = TeleportationState.AtDestination2;
-		// At destination 2. return scale.
+		// At destination 2. return scale, turn on thrusters, and we're done.
 		yield return StartCoroutine (translate (transform.position, timeAtDestination2, startScale));
+		this.particleRenderer.enabled = true;
 		this.teleportationState = TeleportationState.Done;
 		yield return null;
 	}
