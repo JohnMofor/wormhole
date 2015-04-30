@@ -56,7 +56,7 @@ public class CreateMenuGUI : MonoBehaviour {
 				inCredits = true;
 			}
 			GUI.skin = Platypus;
-			GUI.Box(new Rect(750, 150, 500, 500), "");
+			GUI.Box(new Rect(Screen.width - 600, Screen.height - 600, 500, 500), "");
 		}
 
 	}

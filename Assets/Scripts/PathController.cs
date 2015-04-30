@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PathController : MonoBehaviour
 {
 	public float pointSeparation = 0.01f;
-	public int numberOfPointsPerUpdate = 6;
+	public int updateSpeed = 6;
 	public BezierSpline spline;
 	private List<Vector3> points;
 	private LineRenderer lineRenderer;
@@ -30,7 +30,7 @@ public class PathController : MonoBehaviour
 		for (int i = 0; i < numPoints; i++, currentPoint+=this.pointSeparation) {
 			lineRenderer.SetVertexCount (i + 1);
 			lineRenderer.SetPosition (i, spline.GetPoint (currentPoint));
-			if (i % numberOfPointsPerUpdate == 0) {
+			if (i % updateSpeed == 0) {
 				yield return new WaitForFixedUpdate ();
 			}
 		}

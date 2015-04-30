@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody rb;
 	new private ParticleRenderer particleRenderer;
 	private Renderer backgroundRenderer;
-	private float previousY;
+	// /*not in 2d*/ private float previousY;
 	private Vector3 startScale;
 
 	// Teleportation logic.
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 		checkDependencies ();
 		rb = GetComponent<Rigidbody> ();
 		shipRotateTowards = rb.rotation;
-		previousY = shipRotateTowards.eulerAngles.y;
+		// /*not in 2d*/ previousY = shipRotateTowards.eulerAngles.y;
 
 		// Setting boundaries
 		backgroundRenderer = backgroundImage.GetComponent<Renderer> ();
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 		// Act on rb
 		rb.rotation = Quaternion.Euler (0f, slerpComp.eulerAngles.y, 0f);
 		// Prepare for next update.
-		previousY = slerpComp.eulerAngles.y;
+		// /*not in 2d*/ previousY = slerpComp.eulerAngles.y;
 		// Lateral motion?
 		//rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, rb.velocity.x * -tilt);
 
