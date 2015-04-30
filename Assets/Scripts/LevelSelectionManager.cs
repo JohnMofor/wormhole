@@ -10,7 +10,6 @@ public class LevelSelectionManager : MonoBehaviour {
 	void Awake (){
 
 		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
-		Debug.Log (unlockedLevels[0]);
 
 		for (int i = 1; i <= numberOfLevels; i++) {
 
