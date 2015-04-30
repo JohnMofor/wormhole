@@ -8,6 +8,8 @@ public class CreateMenuGUI : MonoBehaviour {
 	public GUISkin ExitSkin;
 	public GUISkin CreditsSkin;
 	public GUISkin QuitSkin;
+	public GUISkin Logo;
+	public GUISkin Platypus;
 
 	private bool inCredits;
 
@@ -38,23 +40,23 @@ public class CreateMenuGUI : MonoBehaviour {
 			}
 			GUI.EndGroup ();
 		} else {
+			GUI.skin = Logo;
+			GUI.Box (new Rect(Screen.width /2 - 250, Screen.height / 2 - 300, 500, 250), "");
 			GUI.skin = PlaySkin;
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 - 100, 150, 75), "")) {
-				Application.LoadLevel ("tutorial2d");
-			}
-			GUI.skin = TutorialSkin;
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 75), "")) {
+			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 75), "")) {
 				Application.LoadLevel ("tutorial2d");
 			}
 			GUI.skin = ExitSkin;
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 100, 150, 75), "")) {
+			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 150, 150, 75), "")) {
 				Application.Quit ();
 			}
 			GUI.skin = CreditsSkin;
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 80, 30), "")) {
+			if (GUI.Button (new Rect (40, Screen.height - 60, 80, 30), "")) {
 				Debug.Log ("credits");
 				inCredits = true;
 			}
+			GUI.skin = Platypus;
+			GUI.Box(new Rect(750, 150, 500, 500), "");
 		}
 
 	}

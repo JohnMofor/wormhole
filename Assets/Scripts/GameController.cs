@@ -11,8 +11,12 @@ public class GameController : MonoBehaviour
 	public Text restartText;
 	public Text gameOverText;
 
+	public GUISkin tryAgainSkin;
+	public GUISkin exitSkin;
+
 	private bool restart;
 	private bool gameOver;
+	private bool victory;
 	private bool reachedDestination;
 	private int score;
 
@@ -25,6 +29,7 @@ public class GameController : MonoBehaviour
 		restartText.text = "";
 		gameOverText.text = "";
 		gameOver = false;
+		victory = false;
 		restart = false;
 	}
 
@@ -43,7 +48,7 @@ public class GameController : MonoBehaviour
 	}
 
 	void OnGUI() {
-		if (reachedDestination) { 
+		/*if (reachedDestination) { 
 			GUIStyle titleStyle = new GUIStyle ();
 			titleStyle.fontSize = 30;
 			titleStyle.normal.textColor = Color.white;
@@ -51,7 +56,25 @@ public class GameController : MonoBehaviour
 			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
 			GUI.Label (new Rect (125, 50, 100, 20), "You need the rest of the collectibles!", titleStyle);
-			GUI.EndGroup();
+			GUI.EndGroup ();
+		} else*/ if (gameOver == true && victory == false) {
+
+			GUIStyle titleStyle = new GUIStyle ();
+			titleStyle.fontSize = 30;
+			titleStyle.normal.textColor = Color.white;
+
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label(new Rect(100, 75, 100, 50), "Game Over!", titleStyle);
+			GUI.skin = tryAgainSkin;
+			if (GUI.Button (new Rect (15, 150, 320, 40), "")) {
+				Application.LoadLevel (Application.loadedLevel);
+			}
+			GUI.skin = exitSkin;
+			if (GUI.Button(new Rect(75, 200, 200, 100), "")) {
+				Application.LoadLevel ("startMenu");
+			}
+			GUI.EndGroup ();
 		}
 	}
 
@@ -77,6 +100,7 @@ public class GameController : MonoBehaviour
 		if (allCollected() == true) {
 			gameOverText.text = "Good Job!";
 			gameOver = true;
+			victory = true;
 			return true;
 		} /*else {
 			float currX = player.transform.position.x;

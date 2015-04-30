@@ -301,6 +301,92 @@ Prefab:
     - {fileID: 11400144, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &34290031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 34290035}
+  - 33: {fileID: 34290034}
+  - 64: {fileID: 34290033}
+  - 23: {fileID: 34290032}
+  - 114: {fileID: 34290036}
+  m_Layer: 0
+  m_Name: Earth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &34290032
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 830aa28f4312eaa468683889d435e943, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &34290033
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &34290034
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &34290035
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
+  m_LocalPosition: {x: 115.300003, y: 5, z: -43.7000008}
+  m_LocalScale: {x: 30, y: 30, z: 100}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
+--- !u!114 &34290036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b321ce81e72b00e4eb76c30783be27ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 587469859}
 --- !u!1001 &77744267
 Prefab:
   m_ObjectHideFlags: 0
@@ -1188,6 +1274,8 @@ MonoBehaviour:
   collectibleText: {fileID: 1775968443}
   restartText: {fileID: 671232387}
   gameOverText: {fileID: 594128235}
+  tryAgainSkin: {fileID: 11400000, guid: e69ce3b683631fa4eb661988a690df9f, type: 2}
+  exitSkin: {fileID: 11400000, guid: ef00fef708448de49be8b163a28cf752, type: 2}
 --- !u!4 &587469860
 Transform:
   m_ObjectHideFlags: 0
@@ -1286,7 +1374,6 @@ MonoBehaviour:
   defaultRotationSpeed: 1
   defaultFollowMouse: 1
   defaultThrust: 50
-  defaultTilt: 1
   pauseSkin: {fileID: 11400000, guid: a558b91e13fe84840bcb67977734c3f6, type: 2}
   resumeSkin: {fileID: 11400000, guid: 2868305646c2a484fa1b04a73f43186b, type: 2}
   settingsSkin: {fileID: 11400000, guid: 0e0a74dd3db6b2145bd73fa036de8a15, type: 2}
@@ -1413,6 +1500,10 @@ Prefab:
     - target: {fileID: 400000, guid: 5cf8fe45b19ded84faf7db80fd8043d5, type: 2}
       propertyPath: m_LocalScale.z
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5cf8fe45b19ded84faf7db80fd8043d5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cf8fe45b19ded84faf7db80fd8043d5, type: 2}
@@ -4129,7 +4220,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bf75b984df8a84987bcf3a8bf6e2862d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 46189560910c9a94cbcfa221bf03f172, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .5
   m_Pitch: 1
