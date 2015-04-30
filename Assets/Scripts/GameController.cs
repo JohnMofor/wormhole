@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
 			}
 			GUI.skin = nextLevelSkin;
 			if (GUI.Button (new Rect(225, 100, 100, 100), "")) {
-				Application.LoadLevel (Application.loadedLevel);
+				Application.LoadLevel (Application.loadedLevel + 1);
 			}
 			GUI.EndGroup ();
 		}
