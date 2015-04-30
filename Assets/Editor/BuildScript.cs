@@ -15,6 +15,7 @@ class BuildScript
 			"Assets/_Scenes/LevelSelectionScene.unity",
 			"Assets/_Scenes/level_solarSystem.unity", 
 			"Assets/_Scenes/level_wormholes.unity", 
+			"Assets/_Scenes/level_blackholes.unity",
 			"Assets/_Scenes/level_binarySystem.unity"};
 		
 		string error = BuildPipeline.BuildPlayer (

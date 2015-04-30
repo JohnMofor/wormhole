@@ -3798,6 +3798,10 @@ MonoBehaviour:
   threeStar: {fileID: 11400000, guid: e3b35f137207d234d9b85f3d0a6382e5, type: 2}
   fourStar: {fileID: 11400000, guid: e234052b9ad8fcd4e8e1333a8486c7d0, type: 2}
   fiveStar: {fileID: 11400000, guid: bb36ad7666cb8804b9859adff7607861, type: 2}
+  sixStar: {fileID: 0}
+  sevenStar: {fileID: 0}
+  eightStar: {fileID: 0}
+  nineStar: {fileID: 0}
 --- !u!82 &1993295954
 AudioSource:
   m_ObjectHideFlags: 0
