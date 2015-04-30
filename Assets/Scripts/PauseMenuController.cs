@@ -45,16 +45,17 @@ public class PauseMenuController : MonoBehaviour {
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.P)) {
-			if (!paused) {
-				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
-				Time.timeScale = 0;
-				paused = true;
-			}
-			else if (!inSettings) {
-				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
-				Time.timeScale = 1;
-				paused = false;
+		if (playerController != null) {
+			if (Input.GetKeyDown (KeyCode.P)) {
+				if (!paused) {
+					(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = false;
+					Time.timeScale = 0;
+					paused = true;
+				} else if (!inSettings) {
+					(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+					Time.timeScale = 1;
+					paused = false;
+				}
 			}
 		}
 	}
@@ -161,7 +162,7 @@ public class PauseMenuController : MonoBehaviour {
 			GUI.EndGroup ();
 
 		// In regular gameplay (no pause)
-		} else {
+		} else if (playerController) {
 			GUI.skin = pauseSkin;
 			if (GUI.Button(new Rect(Screen.width - 60, 10, 50, 50),"")) {
 				pauseGame ();
@@ -170,7 +171,7 @@ public class PauseMenuController : MonoBehaviour {
 	}
 
 	private void resumeGame() {
-		(GameObject.Find ("Player").GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+		(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
 		Time.timeScale = 1;
 		inSettings = false;
 		inAdvancedSettings = false;
@@ -178,7 +179,7 @@ public class PauseMenuController : MonoBehaviour {
 	}
 
 	private void pauseGame() {
-		(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
+		(playerController.GetComponent("PlayerController") as MonoBehaviour).enabled = false;
 		Time.timeScale = 0;
 		paused = true;
 	}
