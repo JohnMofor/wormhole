@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
 	//// Public members.
 	public float speed = 1F;
-	public float tilt = 2F;
+	// /*not in 2d*/ public float tilt = 2F;
 	public float thrust = 50F;
 	public float topSpeed = 50F;
 	public float rotationSpeed = 4.0F;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 	public float verticalPadding = 5F;
 	public float scaleInWormhole = 0.1F;
 	public float wormholeAnimationSteps = 100;
-	public bool enableTilt = true;
+	// /*not in 2d*/ public bool enableTilt = true;
 	public bool followMouse = true;
 	public Quaternion shipRotateTowards;
 	public GameObject playerExplosion;
@@ -78,9 +78,9 @@ public class PlayerController : MonoBehaviour
 		rotationSpeedSlider.value = rotationSpeed;
 		followMouseToggle.isOn = followMouse;
 
-		tiltSlider.value = tilt;
+		tiltSlider.value = 0f;
 		thrustSlider.value = thrust;
-		tiltToggle.isOn = enableTilt;
+		tiltToggle.isOn = false;
 	}
 
 	private void checkDependencies ()
@@ -126,9 +126,9 @@ public class PlayerController : MonoBehaviour
 		// Get the plain rotation components.
 		Quaternion slerpComp = Quaternion.Slerp (rb.rotation, shipRotateTowards, Time.deltaTime * rotationSpeed);
 		// Get the tilt componenets
-		float tiltComp = enableTilt ? tilt * (slerpComp.eulerAngles.y - previousY) : 0;
+		// /*not in 2d*/ float tiltComp = enableTilt ? tilt * (slerpComp.eulerAngles.y - previousY) : 0;
 		// Act on rb
-		rb.rotation = Quaternion.Euler (tiltComp, slerpComp.eulerAngles.y, -tiltComp);
+		rb.rotation = Quaternion.Euler (0f, slerpComp.eulerAngles.y, 0f);
 		// Prepare for next update.
 		previousY = slerpComp.eulerAngles.y;
 		// Lateral motion?
@@ -152,22 +152,22 @@ public class PlayerController : MonoBehaviour
 	/////////////////
 	public void updateMainSettings (String setting, float value, bool boolean)
 	{
-		switch(setting) {
-			case "Speed":
-				speed = value;
-				break;
-			case "Top Speed":
-				topSpeed = value;
-				break;
-			case "Rotation Speed":
-				rotationSpeed = value;
-				break;
-			case "Follow Mouse":
-				followMouse = boolean;
-				break;
-			case "Thrust":
-				thrust = value;
-				break;
+		switch (setting) {
+		case "Speed":
+			speed = value;
+			break;
+		case "Top Speed":
+			topSpeed = value;
+			break;
+		case "Rotation Speed":
+			rotationSpeed = value;
+			break;
+		case "Follow Mouse":
+			followMouse = boolean;
+			break;
+		case "Thrust":
+			thrust = value;
+			break;
 		}
 	}
 
@@ -178,10 +178,14 @@ public class PlayerController : MonoBehaviour
 			thrust = value;
 			break;
 		case "Tilt":
-			enableTilt = boolean;
+			// /*not in 2d*/ enableTilt = boolean;
 			break;
 		}
 	}
+
+	/////////////////////////
+	///// Rotation Logic
+	////////////////////////
 
 	IEnumerator translate (Vector3 to, float duration, Vector3 endScale)
 	{

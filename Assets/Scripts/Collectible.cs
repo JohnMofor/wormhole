@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource), typeof(Rigidbody))]
 public class Collectible : MonoBehaviour
 {
 	public GameController gameController;
 	public AudioClip collectionSound;
+
+	public float turn = 5f;
+
+	void Start() {
+		GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, turn, 0f);
+	}
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -21,4 +27,5 @@ public class Collectible : MonoBehaviour
 			Destroy (gameObject);
 		}
 	}
+
 }
