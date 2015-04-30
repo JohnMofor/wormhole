@@ -3,27 +3,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelSelectionManager : MonoBehaviour {
+public class LevelSelectionManager : MonoBehaviour
+{
 
 	public int numberOfLevels;
-
 	public GUISkin binarySkin;
 	public GUISkin blackholeSkin;
 	public GUISkin solarSystemSkin;
 	public GUISkin tutorialSkin;
 	public GUISkin wormholeSkin;
-
 	public GUISkin backSkin;
-
-	private static Dictionary<string,int> nextLevelOf = new Dictionary<string,int >()
+	private static Dictionary<string,int> nextLevelOf = new Dictionary<string,int > ()
 	{
 		{"tutorial2d",2},
 		{"level_solarSystem",4},
 		{"level_wormholes",5},
-		{"level_blackholes",-1}
+		{"level_blackholes",6},
+		{"level_binarySystem", -1},
 	};
 
-	void Awake (){
+	void Awake ()
+	{
 
 		/*int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
 
@@ -49,7 +49,8 @@ public class LevelSelectionManager : MonoBehaviour {
 		}*/
 	}
 
-	void OnGUI() {
+	void OnGUI ()
+	{
 		GUIStyle titleStyle = new GUIStyle ();
 		titleStyle.fontSize = 60;
 		titleStyle.normal.textColor = Color.white;
@@ -58,23 +59,23 @@ public class LevelSelectionManager : MonoBehaviour {
 
 		GUI.skin = tutorialSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "")) {
-			Application.LoadLevel(1);
+			Application.LoadLevel (1);
 		}
 		GUI.skin = solarSystemSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 100), "")) {
-			Application.LoadLevel(3);
+			Application.LoadLevel (3);
 		}
 		GUI.skin = binarySkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 0, 400, 100), "")) {
-			Application.LoadLevel(2);
+			Application.LoadLevel (2);
 		}
 		GUI.skin = wormholeSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 100, 400, 100), "")) {
-			Application.LoadLevel(2);
+			Application.LoadLevel (2);
 		}
 		GUI.skin = blackholeSkin;
 		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 200, 400, 100), "")) {
-			Application.LoadLevel(4);
+			Application.LoadLevel (4);
 		}
 
 		GUI.skin = backSkin;
@@ -83,30 +84,31 @@ public class LevelSelectionManager : MonoBehaviour {
 		}
 	}
 
-	public static void UnlockNextLevel(int nextLevelNumber)
+	public static void UnlockNextLevel (int nextLevelNumber)
 	{
-		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
+		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels", 1, 1);
 
-		Array.Resize<int> (ref unlockedLevels,unlockedLevels.Length+1);
-		unlockedLevels [unlockedLevels.Length-1] = nextLevelNumber;
-		PlayerPrefsX.SetIntArray ("unlockedLevels",unlockedLevels);
+		Array.Resize<int> (ref unlockedLevels, unlockedLevels.Length + 1);
+		unlockedLevels [unlockedLevels.Length - 1] = nextLevelNumber;
+		PlayerPrefsX.SetIntArray ("unlockedLevels", unlockedLevels);
 	}
 
-	public static void LockAllLevels()
+	public static void LockAllLevels ()
 	{
-		PlayerPrefsX.SetIntArray ("unlockedLevels",new int[]{1});
+		PlayerPrefsX.SetIntArray ("unlockedLevels", new int[]{1});
 	}
 
-	public void LoadScene(string level)
+	public void LoadScene (string level)
 	{
 		Application.LoadLevel (level);
 	}
 
-	public int GetNextLevel(string currentLevel) {
+	public int GetNextLevel (string currentLevel)
+	{
 		return 0;
 	}
 
-	public static int NextLevelOf(string level)
+	public static int NextLevelOf (string level)
 	{
 		return nextLevelOf [level];
 	}
