@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PauseMenuController : MonoBehaviour {
 
@@ -15,14 +16,12 @@ public class PauseMenuController : MonoBehaviour {
 	public float defaultRotationSpeed;
 	public bool defaultFollowMouse;
 	public float defaultThrust;
-	//public bool defaultTilt;
-	
+
 	private float topSpeed;
 	private float speed;
 	private float rotationSpeed;
 	private bool followMouse;
 	private float thrust;
-	//private bool tilt;
 
 	public GUISkin pauseSkin;
 	public GUISkin resumeSkin;
@@ -34,18 +33,32 @@ public class PauseMenuController : MonoBehaviour {
 	public GUISkin oneStar;
 	public GUISkin twoStar;
 	public GUISkin threeStar;
+	public GUISkin fourStar;
+	public GUISkin fiveStar;
+
+	private Dictionary<int, GUISkin> stars;
 
 	void Start() {
 		paused = false;
 		inSettings = false;
-		//inAdvancedSettings = false;
 
 		topSpeed = defaultTopSpeed;
 		speed = defaultSpeed;
 		rotationSpeed = defaultRotationSpeed;
 		followMouse = defaultFollowMouse;
 		thrust = defaultThrust;
-		//tilt = defaultTilt;
+
+		stars = new Dictionary<int, GUISkin>();
+		stars.Add (0, quitSkin);
+		stars.Add(1, oneStar);
+		stars.Add(2, twoStar);
+		stars.Add(3, threeStar);
+		stars.Add(4, fourStar);
+		stars.Add(5, fiveStar);
+		stars.Add(6, fiveStar);
+		stars.Add(7, fiveStar);
+		stars.Add(8, fiveStar);
+		stars.Add(9, fiveStar);
 	}
 
 	void Update ()
@@ -78,7 +91,7 @@ public class PauseMenuController : MonoBehaviour {
 		labelStyle.normal.textColor = Color.white;
 
 		// In core menu page
-		if (paused && !inSettings /*&& !inAdvancedSettings*/) {
+		if (paused && !inSettings) {
 			GUI.BeginGroup (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 275, 400, 550));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
 			GUI.Label (new Rect (125, 50, 100, 20), "Pause", titleStyle);
@@ -135,12 +148,6 @@ public class PauseMenuController : MonoBehaviour {
 			if (GUI.Button(new Rect(145, 325, 60, 60), "")) {
 				resetToDefaults();
 			}
-			
-			/*GUI.skin = advancedSkin;
-			if (GUI.Button (new Rect (175, 300, 100, 100), "")) {
-				inAdvancedSettings = true;
-				inSettings = false;
-			}*/
 
 			GUI.skin = backSkin;
 			if (GUI.Button (new Rect (125, 387.5f, 100, 100), "")) {
@@ -152,29 +159,6 @@ public class PauseMenuController : MonoBehaviour {
 			}
 			GUI.EndGroup ();
 
-		// In Advanced Settings Page
-		/*} else if (inAdvancedSettings) {
-			GUI.BeginGroup (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 275, 400, 550));
-			GUI.Box (new Rect (0, 0, 350, 450), "");
-			GUI.Label (new Rect (125, 50, 100, 20), "Advanced", titleStyle);
-
-			GUI.Label (new Rect(25, 195, 100, 20), "Tilt", labelStyle);
-			bool newTilt = GUI.Toggle(new Rect (250, 200, 50, 50), tilt, "");
-			if (newTilt != followMouse) {
-				playerController.updateAdvancedSettings("Tilt", 0.0f, newTilt);
-				tilt = newTilt;
-			}
-			GUI.skin = backSkin;
-			if (GUI.Button (new Rect (125, 250, 100, 100), "")) {
-				inAdvancedSettings = false;
-				inSettings = true;
-			}
-			GUI.skin = quitSkin;
-			if (GUI.Button (new Rect(300, 10, 40, 40), "")) { 
-				resumeGame ();
-			}
-			GUI.EndGroup ();*/
-
 		// In regular gameplay (no pause)
 		} else if (playerController) {
 			GUI.skin = pauseSkin;
@@ -183,20 +167,14 @@ public class PauseMenuController : MonoBehaviour {
 			}
 			GUI.skin = starsRemainingSkin;
 			GUI.Button(new Rect (20, 10, 100, 50), "");
-			switch(gameController.collectiblesRemaining()) {
-			case 1:
-				GUI.skin = oneStar;
-				break;
-			case 2:
-				GUI.skin = twoStar;
-				break;
-			case 3:
-				GUI.skin = threeStar;
-				break;
-			}
+			GUI.skin = updateStarCount();
 			GUI.Button (new Rect(110, 10, 50, 50), "");
-
 		}
+	}
+
+	private GUISkin updateStarCount() {
+		GUISkin star = stars[gameController.collectiblesRemaining()];
+		return star;
 	}
 
 	private void resetToDefaults() {
@@ -211,7 +189,6 @@ public class PauseMenuController : MonoBehaviour {
 		(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
 		Time.timeScale = 1;
 		inSettings = false;
-		//inAdvancedSettings = false;
 		paused = false;
 	}
 

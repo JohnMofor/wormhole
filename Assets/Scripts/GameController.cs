@@ -6,10 +6,7 @@ using UnityEngine.EventSystems;
 public class GameController : MonoBehaviour
 {
 	private int collected;
-	public int totalNumberOfCollectibles = 3;
-	public Text collectibleText;
-	public Text restartText;
-	public Text gameOverText;
+	public int totalNumberOfCollectibles;
 
 	private bool restart;
 	private bool gameOver;
@@ -28,9 +25,7 @@ public class GameController : MonoBehaviour
 	void Start ()
 	{
 		collected = 0;
-
-		restartText.text = "";
-		gameOverText.text = "";
+		
 		gameOver = false;
 		victory = false;
 		restart = false;
@@ -40,7 +35,6 @@ public class GameController : MonoBehaviour
 	void Update ()
 	{
 		if (gameOver) {
-			restartText.text = "Press 'r' to Restart";
 			restart = true;
 		}
 		if (restart) {
@@ -111,7 +105,6 @@ public class GameController : MonoBehaviour
 	
 	public void GameOver ()
 	{
-		gameOverText.text = "Game Over!";
 		gameOver = true;
 		
 	}
@@ -119,7 +112,6 @@ public class GameController : MonoBehaviour
 	public bool ReachedDestination (GameObject player)
 	{
 		if (allCollected () == true) {
-			gameOverText.text = "Good Job!";
 			gameOver = true;
 			victory = true;
 
