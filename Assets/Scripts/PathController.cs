@@ -46,15 +46,4 @@ public class PathController : MonoBehaviour
 		}
 	}
 
-//	public void OnDrawGizmos ()
-//	{
-//		if (gizmos == null) {
-//			return;
-//		}        
-//		
-//		for (int i = 0; i < gizmos.Count; i++) {
-//			Gizmos.DrawWireSphere (gizmos [i], 1f);            
-//		}
-//	}
-
 }
