@@ -6,7 +6,7 @@ public class Teleport : MonoBehaviour
 	public float waitTimeToReactivate = 3f;
 	public float teleportationDuration = 2f;
 	public GameObject exitWormhole;
-	public PlayerController playerController;
+	private PlayerController playerController;
 	private Teleport teleportDestination;
 	private Vector3 destination;
 	private bool nextExitIsTeleport = true;
@@ -15,9 +15,8 @@ public class Teleport : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		if (playerController == null) {
-			throw new MissingComponentException ("PlayerController missing");
-		}
+		GameObject player = (GameObject) GameObject.FindGameObjectWithTag ("Player");
+		playerController = player.GetComponent<PlayerController> ();
 		destination = exitWormhole.GetComponent<Transform> ().position;
 		teleportDestination = exitWormhole.GetComponent<Teleport> ();
 		if (teleportDestination == null) {
