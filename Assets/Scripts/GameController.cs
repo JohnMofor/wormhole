@@ -7,13 +7,11 @@ public class GameController : MonoBehaviour
 {
 	private int collected;
 	public int totalNumberOfCollectibles;
-
 	private bool restart;
 	private bool gameOver;
 	private bool victory;
 	private bool reachedDestination;
 	private int score;
-
 	public GUISkin tryAgainSkin;
 	public GUISkin exitSkin;
 	public GUISkin restartSkin;
@@ -87,14 +85,19 @@ public class GameController : MonoBehaviour
 				Application.LoadLevel (Application.loadedLevel);
 			}
 			GUI.skin = nextLevelSkin;
-			if (GUI.Button (new Rect(225, 100, 100, 100), "")) {
-				Application.LoadLevel (Application.loadedLevel + 1);
+			if (GUI.Button (new Rect (225, 100, 100, 100), "")) {
+				if (Application.loadedLevel < 6) {
+					Application.LoadLevel (Application.loadedLevel + 1);
+				} else {
+					Application.LoadLevel (0);
+				}
 			}
 			GUI.EndGroup ();
 		}
 	}
 
-	public int collectiblesRemaining() {
+	public int collectiblesRemaining ()
+	{
 		return totalNumberOfCollectibles - collected;
 	}
 
@@ -116,10 +119,9 @@ public class GameController : MonoBehaviour
 			victory = true;
 
 			string currentLevel = Application.loadedLevelName;
-			int nextLevelNumber = LevelSelectionManager.NextLevelOf(currentLevel);
-			if (nextLevelNumber !=-1)
-			{
-				LevelSelectionManager.UnlockNextLevel(nextLevelNumber);
+			int nextLevelNumber = LevelSelectionManager.NextLevelOf (currentLevel);
+			if (nextLevelNumber != -1) {
+				LevelSelectionManager.UnlockNextLevel (nextLevelNumber);
 			}
 
 
