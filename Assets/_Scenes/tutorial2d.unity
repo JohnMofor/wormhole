@@ -310,9 +310,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 34290035}
   - 33: {fileID: 34290034}
-  - 64: {fileID: 34290033}
   - 23: {fileID: 34290032}
   - 114: {fileID: 34290036}
+  - 135: {fileID: 34290037}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -344,18 +344,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &34290033
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 34290031}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &34290034
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -370,11 +358,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34290031}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 115.300003, y: 5, z: -43.7000008}
+  m_LocalPosition: {x: 113, y: 0, z: -51.4000015}
   m_LocalScale: {x: 30, y: 30, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
 --- !u!114 &34290036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +375,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 587469859}
+--- !u!135 &34290037
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34290031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .152185842
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &77744267
 Prefab:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 419570, guid: 182ab5247035f0c489c1e02a2286ece1, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 178682, guid: 182ab5247035f0c489c1e02a2286ece1, type: 2}
       propertyPath: m_Name
@@ -490,7 +490,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457906, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 136466, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: m_Name
@@ -700,7 +700,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457906, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: m_RootOrder
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 136466, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: m_Name
@@ -1483,7 +1483,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5cf8fe45b19ded84faf7db80fd8043d5, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 5cf8fe45b19ded84faf7db80fd8043d5, type: 2}
       propertyPath: m_Enabled
@@ -1573,7 +1573,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457906, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 11473588, guid: e748c21652738ce458ee410c15399ac3, type: 2}
       propertyPath: gameController
@@ -4584,7 +4584,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: baedbbad82997f445a8cb4da210404e0, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: baedbbad82997f445a8cb4da210404e0, type: 3}
       propertyPath: m_LocalScale.x
