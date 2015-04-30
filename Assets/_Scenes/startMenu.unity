@@ -374,7 +374,7 @@ MonoBehaviour:
   PlaySkin: {fileID: 11400000, guid: 30f5a1c408774a44baf33f408b9c3176, type: 2}
   TutorialSkin: {fileID: 11400000, guid: c639101840025804382046d972ee20a1, type: 2}
   ExitSkin: {fileID: 11400000, guid: ef00fef708448de49be8b163a28cf752, type: 2}
-  CreditsSkin: {fileID: 11400000, guid: 30f5a1c408774a44baf33f408b9c3176, type: 2}
+  CreditsSkin: {fileID: 11400000, guid: faf4f50316360b3458c14f8d691d449f, type: 2}
   QuitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
   Logo: {fileID: 11400000, guid: 03e5dc452182be2438e0ede97e52f1db, type: 2}
   Platypus: {fileID: 11400000, guid: f8b9f1f000969254b80251728cca9ee2, type: 2}

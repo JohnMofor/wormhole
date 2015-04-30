@@ -29,6 +29,7 @@ public class PauseMenuController : MonoBehaviour {
 	public GUISkin quitSkin;
 	public GUISkin backSkin;
 	public GUISkin advancedSkin;
+	public GUISkin starsRemainingSkin;
 
 	void Start() {
 		paused = false;
@@ -174,6 +175,8 @@ public class PauseMenuController : MonoBehaviour {
 			if (GUI.Button(new Rect(Screen.width - 60, 10, 50, 50),"")) {
 				pauseGame ();
 			}
+			GUI.skin = starsRemainingSkin;
+			GUI.Button(new Rect (20, 10, 100, 50), "");
 		}
 	}
 

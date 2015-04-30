@@ -50,6 +50,9 @@ public class LevelSelectionManager : MonoBehaviour {
 	public void LoadScene(string level)
 	{
 		Application.LoadLevel (level);
+	}
 
+	public int GetNextLevel(string currentLevel) {
+		return 0;
 	}
 }
