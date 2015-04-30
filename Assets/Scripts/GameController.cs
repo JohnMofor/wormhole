@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class GameController : MonoBehaviour
 {
 	private int collected;
-	public int totalNumberOfCollectibles = 3;
+	public int totalNumberOfCollectibles;
 	public Text collectibleText;
 	public Text restartText;
 	public Text gameOverText;

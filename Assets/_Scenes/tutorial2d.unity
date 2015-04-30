@@ -1585,6 +1585,8 @@ MonoBehaviour:
   oneStar: {fileID: 11400000, guid: 3bdf0b8f557b05a4b8b9866f6302d3b7, type: 2}
   twoStar: {fileID: 11400000, guid: 9009a907f86a9b84aa549586a29cc852, type: 2}
   threeStar: {fileID: 11400000, guid: e3b35f137207d234d9b85f3d0a6382e5, type: 2}
+  fourStar: {fileID: 0}
+  fiveStar: {fileID: 0}
 --- !u!1 &594128233
 GameObject:
   m_ObjectHideFlags: 0
