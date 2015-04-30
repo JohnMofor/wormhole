@@ -10,19 +10,24 @@ public class GameController : MonoBehaviour
 	public Text collectibleText;
 	public Text restartText;
 	public Text gameOverText;
-	public GUISkin tryAgainSkin;
-	public GUISkin exitSkin;
+
 	private bool restart;
 	private bool gameOver;
 	private bool victory;
 	private bool reachedDestination;
 	private int score;
 
+	public GUISkin tryAgainSkin;
+	public GUISkin exitSkin;
+	public GUISkin restartSkin;
+	public GUISkin backToMenuSkin;
+	public GUISkin nextLevelSkin;
+	public GUISkin greatJobSkin;
+
 	// Use this for initialization
 	void Start ()
 	{
 		collected = 0;
-		UpdateCollectibleText ();
 
 		restartText.text = "";
 		gameOverText.text = "";
@@ -58,7 +63,6 @@ public class GameController : MonoBehaviour
 			GUI.EndGroup ();
 		} else*/
 		if (gameOver == true && victory == false) {
-
 			GUIStyle titleStyle = new GUIStyle ();
 			titleStyle.fontSize = 30;
 			titleStyle.normal.textColor = Color.white;
@@ -75,18 +79,34 @@ public class GameController : MonoBehaviour
 				Application.LoadLevel ("startMenu");
 			}
 			GUI.EndGroup ();
+		} else if (gameOver == true && victory == true) {
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 125, 350, 250));
+			GUI.Box (new Rect (0, 0, 350, 250), "");
+			GUI.skin = greatJobSkin;
+			GUI.Button (new Rect (75, 25, 200, 50), "");
+			GUI.skin = backToMenuSkin;
+			if (GUI.Button (new Rect (25, 100, 100, 100), "")) {
+				Application.LoadLevel ("startMenu");
+			}
+			GUI.skin = restartSkin;
+			if (GUI.Button (new Rect (125, 100, 100, 100), "")) {
+				Application.LoadLevel (Application.loadedLevel);
+			}
+			GUI.skin = nextLevelSkin;
+			if (GUI.Button (new Rect(225, 100, 100, 100), "")) {
+				Application.LoadLevel (Application.loadedLevel);
+			}
+			GUI.EndGroup ();
 		}
 	}
 
-	private void UpdateCollectibleText ()
-	{
-		collectibleText.text = "Collectibles Remaining: " + (totalNumberOfCollectibles - collected);
+	public int collectiblesRemaining() {
+		return totalNumberOfCollectibles - collected;
 	}
-	
+
 	public void AddCollectible ()
 	{
 		collected += 1;
-		UpdateCollectibleText ();
 	}
 	
 	public void GameOver ()

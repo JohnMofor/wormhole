@@ -4,6 +4,7 @@ using System.Collections;
 public class PauseMenuController : MonoBehaviour {
 
 	public PlayerController playerController;
+	public GameController gameController;
 
 	private bool paused;
 	private bool inSettings;
@@ -29,11 +30,15 @@ public class PauseMenuController : MonoBehaviour {
 	public GUISkin quitSkin;
 	public GUISkin backSkin;
 	public GUISkin advancedSkin;
+	public GUISkin starsRemainingSkin;
+	public GUISkin oneStar;
+	public GUISkin twoStar;
+	public GUISkin threeStar;
 
 	void Start() {
 		paused = false;
 		inSettings = false;
-		inAdvancedSettings = false;
+		//inAdvancedSettings = false;
 
 		topSpeed = defaultTopSpeed;
 		speed = defaultSpeed;
@@ -46,14 +51,16 @@ public class PauseMenuController : MonoBehaviour {
 	void Update ()
 	{
 		if (playerController != null) {
-			if (Input.GetKeyDown (KeyCode.P)) {
+			if (Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
 				if (!paused) {
 					(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = false;
 					Time.timeScale = 0;
+					inSettings = false;
 					paused = true;
-				} else if (!inSettings) {
+				} else {
 					(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
 					Time.timeScale = 1;
+					inSettings = false;
 					paused = false;
 				}
 			}
@@ -71,7 +78,7 @@ public class PauseMenuController : MonoBehaviour {
 		labelStyle.normal.textColor = Color.white;
 
 		// In core menu page
-		if (paused && !inSettings && !inAdvancedSettings) {
+		if (paused && !inSettings /*&& !inAdvancedSettings*/) {
 			GUI.BeginGroup (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 275, 400, 550));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
 			GUI.Label (new Rect (125, 50, 100, 20), "Pause", titleStyle);
@@ -174,6 +181,21 @@ public class PauseMenuController : MonoBehaviour {
 			if (GUI.Button(new Rect(Screen.width - 60, 10, 50, 50),"")) {
 				pauseGame ();
 			}
+			GUI.skin = starsRemainingSkin;
+			GUI.Button(new Rect (20, 10, 100, 50), "");
+			switch(gameController.collectiblesRemaining()) {
+			case 1:
+				GUI.skin = oneStar;
+				break;
+			case 2:
+				GUI.skin = twoStar;
+				break;
+			case 3:
+				GUI.skin = threeStar;
+				break;
+			}
+			GUI.Button (new Rect(110, 10, 50, 50), "");
+
 		}
 	}
 
@@ -189,7 +211,7 @@ public class PauseMenuController : MonoBehaviour {
 		(playerController.GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
 		Time.timeScale = 1;
 		inSettings = false;
-		inAdvancedSettings = false;
+		//inAdvancedSettings = false;
 		paused = false;
 	}
 

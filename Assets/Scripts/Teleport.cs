@@ -16,7 +16,6 @@ public class Teleport : MonoBehaviour
 	void Start ()
 	{
 		GameObject player = (GameObject) GameObject.FindGameObjectWithTag ("Player");
-		Debug.Log ("Player found: " + player.name);
 		playerController = player.GetComponent<PlayerController> ();
 		if (playerController == null) {
 			throw new MissingComponentException ("playerController missing");
