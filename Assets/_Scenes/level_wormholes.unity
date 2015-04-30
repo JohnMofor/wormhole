@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbe39e311cefe647989e12ab7bbd15d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 1556795068}
   gameController: {fileID: 786257665}
   defaultTopSpeed: 50
   defaultSpeed: 1
@@ -1649,7 +1649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &831978383
 GameObject:
   m_ObjectHideFlags: 0

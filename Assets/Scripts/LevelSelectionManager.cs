@@ -7,6 +7,14 @@ public class LevelSelectionManager : MonoBehaviour {
 
 	public int numberOfLevels;
 
+	public GUISkin binarySkin;
+	public GUISkin blackholeSkin;
+	public GUISkin solarSystemSkin;
+	public GUISkin tutorialSkin;
+	public GUISkin wormholeSkin;
+
+	public GUISkin backSkin;
+
 	private static Dictionary<string,int> nextLevelOf = new Dictionary<string,int >()
 	{
 		{"tutorial2d",2},
@@ -17,7 +25,7 @@ public class LevelSelectionManager : MonoBehaviour {
 
 	void Awake (){
 
-		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
+		/*int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
 
 		for (int i = 1; i <= numberOfLevels; i++) {
 
@@ -38,9 +46,42 @@ public class LevelSelectionManager : MonoBehaviour {
 				lockedLevelButton.gameObject.SetActive(true);
 			}
 
-		}
+		}*/
 	}
 
+	void OnGUI() {
+		GUIStyle titleStyle = new GUIStyle ();
+		titleStyle.fontSize = 60;
+		titleStyle.normal.textColor = Color.white;
+
+		GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 300, 400, 100), "Level Selection", titleStyle);
+
+		GUI.skin = tutorialSkin;
+		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "")) {
+			Application.LoadLevel(1);
+		}
+		GUI.skin = solarSystemSkin;
+		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 100), "")) {
+			Application.LoadLevel(3);
+		}
+		GUI.skin = binarySkin;
+		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 0, 400, 100), "")) {
+			Application.LoadLevel(2);
+		}
+		GUI.skin = wormholeSkin;
+		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 100, 400, 100), "")) {
+			Application.LoadLevel(2);
+		}
+		GUI.skin = blackholeSkin;
+		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 200, 400, 100), "")) {
+			Application.LoadLevel(4);
+		}
+
+		GUI.skin = backSkin;
+		if (GUI.Button (new Rect (10, 10, 75, 75), "")) {
+			Application.LoadLevel (0);
+		}
+	}
 
 	public static void UnlockNextLevel(int nextLevelNumber)
 	{

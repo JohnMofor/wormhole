@@ -1088,7 +1088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &897592151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,6 +1183,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfLevels: 5
+  binarySkin: {fileID: 0}
+  blackholeSkin: {fileID: 0}
+  solarSystemSkin: {fileID: 0}
+  tutorialSkin: {fileID: 0}
+  wormholeSkin: {fileID: 0}
+  backSkin: {fileID: 0}
 --- !u!1 &1014480518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1201,7 @@ GameObject:
   - 92: {fileID: 1014480521}
   - 124: {fileID: 1014480520}
   - 81: {fileID: 1014480519}
+  - 114: {fileID: 1014480524}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1267,6 +1274,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1014480524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1014480518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3b1bde0b7509e47b5829a17dffbf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfLevels: 5
+  binarySkin: {fileID: 11400000, guid: 05db109e09df2a842a874d3252b0f944, type: 2}
+  blackholeSkin: {fileID: 11400000, guid: 95ff6e9192a21cd4ebb1093d0fc312cc, type: 2}
+  solarSystemSkin: {fileID: 11400000, guid: d72619a6bc704e549a0cee74aaf2a705, type: 2}
+  tutorialSkin: {fileID: 11400000, guid: 6d5fdce0c48a0ec418b33b38cf0e382f, type: 2}
+  wormholeSkin: {fileID: 11400000, guid: cae35074e1d550a4983981c286714927, type: 2}
+  backSkin: {fileID: 11400000, guid: e29a75b664f35ef41be3ee2a2198efd0, type: 2}
 --- !u!1 &1057984281
 GameObject:
   m_ObjectHideFlags: 0
