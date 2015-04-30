@@ -6,52 +6,30 @@ using UnityEngine.EventSystems;
 public class GameController : MonoBehaviour
 {
 	private int collected;
-	public Vector3 spawnValues;
-	public float startWait;
-	public float spawnWait;
-	public float waveWait;
-	public Text scoreText;
+
+	public Text collectibleText;
 	public Text restartText;
 	public Text gameOverText;
 
+	public GUISkin tryAgainSkin;
+	public GUISkin exitSkin;
+
 	private bool restart;
 	private bool gameOver;
+	private bool victory;
+	private bool reachedDestination;
 	private int score;
 
-	void UpdateScore ()
-	{
-		scoreText.text = "Score: " + score.ToString ();
-	}
-
-	public void AddScore (int newScoreValue)
-	{
-		score += newScoreValue;
-		UpdateScore ();
-	}
-
-	public void GameOver ()
-	{
-		gameOverText.text = "Game Over!";
-		gameOver = true;
-
-	}
-
-	public void ReachedDestination() {
-		gameOverText.text = "Good Job!";
-		gameOver = true;
-	}
-	
 	// Use this for initialization
 	void Start ()
 	{
-		score = 0;
-		UpdateScore ();
-
 		collected = 0;
+		UpdateCollectibleText ();
 
 		restartText.text = "";
 		gameOverText.text = "";
 		gameOver = false;
+		victory = false;
 		restart = false;
 	}
 
@@ -69,8 +47,71 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public void collectCollectible(GameObject collectible) {
+	void OnGUI() {
+		/*if (reachedDestination) { 
+			GUIStyle titleStyle = new GUIStyle ();
+			titleStyle.fontSize = 30;
+			titleStyle.normal.textColor = Color.white;
+
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label (new Rect (125, 50, 100, 20), "You need the rest of the collectibles!", titleStyle);
+			GUI.EndGroup ();
+		} else*/ if (gameOver == true && victory == false) {
+
+			GUIStyle titleStyle = new GUIStyle ();
+			titleStyle.fontSize = 30;
+			titleStyle.normal.textColor = Color.white;
+
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label(new Rect(100, 75, 100, 50), "Game Over!", titleStyle);
+			GUI.skin = tryAgainSkin;
+			if (GUI.Button (new Rect (15, 150, 320, 40), "")) {
+				Application.LoadLevel (Application.loadedLevel);
+			}
+			GUI.skin = exitSkin;
+			if (GUI.Button(new Rect(75, 200, 200, 100), "")) {
+				Application.LoadLevel ("startMenu");
+			}
+			GUI.EndGroup ();
+		}
+	}
+
+	private void UpdateCollectibleText ()
+	{
+		collectibleText.text = "Collectibles Remaining: " + (3 - collected);
+	}
+	
+	public void AddCollectible ()
+	{
 		collected += 1;
+		UpdateCollectibleText ();
+	}
+	
+	public void GameOver ()
+	{
+		gameOverText.text = "Game Over!";
+		gameOver = true;
+		
+	}
+	
+	public bool ReachedDestination(GameObject player) {
+		if (allCollected() == true) {
+			gameOverText.text = "Good Job!";
+			gameOver = true;
+			victory = true;
+			return true;
+		} /*else {
+			float currX = player.transform.position.x;
+			float currY = player.transform.position.y;
+			Debug.Log( Mathf.Abs(player.transform.position.x - currX));
+			while (Mathf.Abs(player.transform.position.x - currX) < 10 || Mathf.Abs(player.transform.position.y - currY) < 10) {
+				reachedDestination = true;
+			}
+			return false;
+		}*/
+		return false;
 	}
 
 	public bool allCollected() {
@@ -79,32 +120,5 @@ public class GameController : MonoBehaviour
 		} else
 			return false;
 	}
-
-	/*
-	public void ResumeGame() {
-		(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = true;
-		pauseCanvas.enabled = false;
-		pauseOptionsCanvas.enabled = false;
-		pauseAdvancedOptionsCanvas.enabled = false;
-		Time.timeScale = 1;
-	}
-
-	public void PauseOptions() {
-		pauseCanvas.enabled = !pauseCanvas.enabled;
-		pauseOptionsCanvas.enabled = !pauseOptionsCanvas.enabled;
-		inSettings = !inSettings;
-	}
-
-	public void PauseAdvancedOptions() {
-		pauseOptionsCanvas.enabled = !pauseOptionsCanvas.enabled;
-		pauseAdvancedOptionsCanvas.enabled = !pauseAdvancedOptionsCanvas.enabled;
-	}
-
-	public void QuitGame() {
-		Application.LoadLevel ("startMenu");
-		pauseCanvas.enabled = false;
-		paused = false;
-		Time.timeScale = 1;
-	}
-	*/
+	
 }

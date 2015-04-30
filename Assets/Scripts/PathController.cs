@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PathController : MonoBehaviour
 {
 	public float pointSeparation = 0.01f;
+	public int numberOfPointsPerUpdate = 6;
 	public BezierSpline spline;
-
 	private List<Vector3> points;
 	private LineRenderer lineRenderer;
 
@@ -14,7 +14,7 @@ public class PathController : MonoBehaviour
 	void Start ()
 	{
 		lineRenderer = GetComponent<LineRenderer> ();
-		Render();
+		StartCoroutine (render ());
 	}
 	
 	// Update is called once per frame
@@ -23,27 +23,17 @@ public class PathController : MonoBehaviour
 
 	}
 
-	private void Render ()
+	private IEnumerator render ()
 	{
-		RenderBezier ();
-	}
-
-	private void RenderBezier ()
-	{
-		List<Vector3> drawingPoints = new List<Vector3>();
-		for (float i = 0; i <= 1; i += pointSeparation) {
-			drawingPoints.Add(spline.GetPoint(i));
+		int numPoints = Mathf.RoundToInt (1f / pointSeparation);
+		float currentPoint = 0f;
+		for (int i = 0; i < numPoints; i++, currentPoint+=this.pointSeparation) {
+			lineRenderer.SetVertexCount (i + 1);
+			lineRenderer.SetPosition (i, spline.GetPoint (currentPoint));
+			if (i % numberOfPointsPerUpdate == 0) {
+				yield return new WaitForFixedUpdate ();
+			}
 		}
-		SetLinePoints (drawingPoints);
+		yield return null;
 	}
-
-	private void SetLinePoints (List<Vector3> drawingPoints)
-	{
-		lineRenderer.SetVertexCount (drawingPoints.Count);
-		
-		for (int i = 0; i < drawingPoints.Count; i++) {
-			lineRenderer.SetPosition (i, drawingPoints [i]);
-		}
-	}
-
 }

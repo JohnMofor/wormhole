@@ -165,6 +165,9 @@ public class PlayerController : MonoBehaviour
 			case "Follow Mouse":
 				followMouse = boolean;
 				break;
+			case "Thrust":
+				thrust = value;
+				break;
 		}
 	}
 

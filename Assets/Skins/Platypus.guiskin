@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Exit Button
+  m_Name: Platypus
   m_EditorClassIdentifier: 
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_box:
     m_Name: box
     m_Normal:
-      m_Background: {fileID: 11001, guid: 0000000000000000e000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: 270ac75faf9acd44099b2fb4607561a8, type: 3}
       m_TextColor: {r: .799999952, g: .799999952, b: .799999952, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -74,28 +74,28 @@ MonoBehaviour:
   m_button:
     m_Name: button
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 2800000, guid: 270ac75faf9acd44099b2fb4607561a8, type: 3}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Hover:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 11003, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Active:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 11002, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Focused:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnNormal:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 11005, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .90196079, g: .90196079, b: .90196079, a: 1}
     m_OnHover:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 11004, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnActive:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 11002, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_OnFocused:
-      m_Background: {fileID: 2800000, guid: 8614edaafaf592948a6769f86001268e, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Border:
       m_Left: 6
