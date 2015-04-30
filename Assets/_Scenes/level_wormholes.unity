@@ -1443,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbe39e311cefe647989e12ab7bbd15d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 1556795068}
   defaultTopSpeed: 50
   defaultSpeed: 1
   defaultRotationSpeed: 1

@@ -1790,7 +1790,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.y
@@ -1802,11 +1802,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11439108, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: gameController
@@ -1819,6 +1819,22 @@ Prefab:
     - target: {fileID: 11443698, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: turnSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394404, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
+    - target: {fileID: 3380200, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106709
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
@@ -4225,7 +4241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.y
@@ -4237,16 +4253,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11439108, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 587469859}
+    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106709
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380200, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2394404, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
   m_IsPrefabParent: 0
