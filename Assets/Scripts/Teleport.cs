@@ -9,7 +9,8 @@ public class Teleport : MonoBehaviour
 	public PlayerController playerController;
 	private Teleport teleportDestination;
 	private Vector3 destination;
-	private bool active = true;
+	private bool nextExitIsTeleport = true;
+	private bool nextEnterIsTeleport = false;
 
 	// Use this for initialization
 	void Start ()
@@ -26,31 +27,36 @@ public class Teleport : MonoBehaviour
 	
 	public void deactivate ()
 	{
-		this.active = false;
+		this.nextEnterIsTeleport = true;
 	}
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (!other.gameObject.tag.Equals ("Player") || !this.active) {
+		if (!other.gameObject.tag.Equals ("Player")) {
 			return;
 		}
+
+		if (this.nextEnterIsTeleport) {
+			nextEnterIsTeleport = false;
+			return;
+		}
+
+
 		teleportDestination.deactivate ();
-		playerController.teleport(transform.position, destination, teleportationDuration);
+		this.nextExitIsTeleport = true;
+		playerController.teleport (transform.position, destination, teleportationDuration);
 	}
 
 	void OnTriggerExit (Collider other)
 	{
-		if (!this.active && other.gameObject.tag.Equals ("Player")) {
-			StartCoroutine (reactivate ());
-		}
-	}
 
-	IEnumerator reactivate ()
-	{
-		if (!this.active) {
-			yield return null;
+		if (!other.gameObject.tag.Equals ("Player")) {
+			return;
 		}
-		yield return new WaitForSeconds (waitTimeToReactivate);
-		this.active = true;
+
+		if (this.nextExitIsTeleport) {
+			nextExitIsTeleport = false;
+			return;
+		}
 	}
 }

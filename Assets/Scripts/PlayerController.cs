@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 	new private ParticleRenderer particleRenderer;
 	private Renderer backgroundRenderer;
 	private float previousY;
+	private Vector3 startScale;
 
 	// Teleportation logic.
 	private enum TeleportationState
@@ -73,14 +74,18 @@ public class PlayerController : MonoBehaviour
 		boundary.zMin = backgroundRenderer.bounds.center.z - backgroundRenderer.bounds.extents.z + verticalPadding;
 		boundary.zMax = backgroundRenderer.bounds.center.z + backgroundRenderer.bounds.extents.z - verticalPadding;
 
+		// Setting sliders for settings.
 		speedSlider.value = speed;
 		topSpeedSlider.value = topSpeed;
 		rotationSpeedSlider.value = rotationSpeed;
 		followMouseToggle.isOn = followMouse;
-
 		tiltSlider.value = 0f;
 		thrustSlider.value = thrust;
 		tiltToggle.isOn = false;
+
+		// Saving game initial state
+		startScale = transform.localScale;
+
 	}
 
 	private void checkDependencies ()
@@ -215,7 +220,6 @@ public class PlayerController : MonoBehaviour
 		rb.angularVelocity = Vector3.zero;
 
 		// Scale info.
-		Vector3 startScale = transform.localScale;
 		Vector3 wormholeScale = startScale * scaleInWormhole;
 
 		// Compute all timing requirements
