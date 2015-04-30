@@ -54,11 +54,11 @@ public class PauseMenuController : MonoBehaviour {
 		stars.Add(2, twoStar);
 		stars.Add(3, threeStar);
 		stars.Add(4, fourStar);
-		stars.Add(5, oneStar);
-		stars.Add(6, twoStar);
-		stars.Add(7, threeStar);
-		stars.Add(8, fourStar);
-		stars.Add(9, fourStar);
+		stars.Add(5, fiveStar);
+		stars.Add(6, fiveStar);
+		stars.Add(7, fiveStar);
+		stars.Add(8, fiveStar);
+		stars.Add(9, fiveStar);
 	}
 
 	void Update ()
