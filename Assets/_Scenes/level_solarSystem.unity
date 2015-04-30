@@ -1464,7 +1464,7 @@ GameObject:
   - 23: {fileID: 823292910}
   m_Layer: 0
   m_Name: Rocket 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3893,7 +3893,6 @@ MonoBehaviour:
   waitTimeToReactivate: 3
   teleportationDuration: 2
   exitWormhole: {fileID: 0}
-  playerController: {fileID: 1196772335}
 --- !u!135 &1749411136
 SphereCollider:
   m_ObjectHideFlags: 0

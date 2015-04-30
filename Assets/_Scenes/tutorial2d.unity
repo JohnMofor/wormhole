@@ -788,7 +788,6 @@ MonoBehaviour:
   waitTimeToReactivate: 3
   teleportationDuration: 2
   exitWormhole: {fileID: 973633396}
-  playerController: {fileID: 1844056653}
 --- !u!1001 &328208164
 Prefab:
   m_ObjectHideFlags: 0
@@ -2050,7 +2049,6 @@ MonoBehaviour:
   waitTimeToReactivate: 3
   teleportationDuration: 2
   exitWormhole: {fileID: 311633547}
-  playerController: {fileID: 1844056653}
 --- !u!1001 &1002487798
 Prefab:
   m_ObjectHideFlags: 0
@@ -3193,7 +3191,7 @@ GameObject:
   - 23: {fileID: 1512533732}
   m_Layer: 0
   m_Name: Rocket 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
