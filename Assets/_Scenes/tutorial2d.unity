@@ -393,11 +393,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844056652}
   m_RootOrder: 1
---- !u!223 &270470272
-Canvas:
-  m_PrefabParentObject: {fileID: 22399764, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1038415338}
 --- !u!114 &293788985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,11 +583,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374495835}
---- !u!223 &393811426
-Canvas:
-  m_PrefabParentObject: {fileID: 22399764, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1789348930}
 --- !u!1001 &500642139
 Prefab:
   m_ObjectHideFlags: 0
@@ -1001,11 +991,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22464348, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e,
     type: 2}
   m_PrefabInternal: {fileID: 549835213}
---- !u!223 &549835215
-Canvas:
-  m_PrefabParentObject: {fileID: 22399764, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e,
-    type: 2}
-  m_PrefabInternal: {fileID: 549835213}
 --- !u!1 &551560603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1061,7 @@ GameObject:
   - 4: {fileID: 587469860}
   - 114: {fileID: 587469859}
   - 82: {fileID: 587469861}
+  - 114: {fileID: 587469862}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -1101,18 +1087,6 @@ MonoBehaviour:
   scoreText: {fileID: 1775968443}
   restartText: {fileID: 671232387}
   gameOverText: {fileID: 594128235}
-  pauseCanvas: {fileID: 549835215}
-  pauseOptionsCanvas: {fileID: 270470272}
-  pauseAdvancedOptionsCanvas: {fileID: 393811426}
-  pausePanel: {fileID: 1109130402}
-  pauseOptionsPanel: {fileID: 811403301}
-  pauseAdvancedOptionsPanel: {fileID: 1921561361}
-  pauseSkin: {fileID: 11400000, guid: a558b91e13fe84840bcb67977734c3f6, type: 2}
-  resumeSkin: {fileID: 11400000, guid: 2868305646c2a484fa1b04a73f43186b, type: 2}
-  settingsSkin: {fileID: 11400000, guid: 0e0a74dd3db6b2145bd73fa036de8a15, type: 2}
-  quitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
-  backSkin: {fileID: 11400000, guid: e29a75b664f35ef41be3ee2a2198efd0, type: 2}
-  advancedSkin: {fileID: 11400000, guid: 5668a2676a1b8884c935d833353b3377, type: 2}
 --- !u!4 &587469860
 Transform:
   m_ObjectHideFlags: 0
@@ -1194,6 +1168,30 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &587469862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587469858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbe39e311cefe647989e12ab7bbd15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1844056653}
+  defaultTopSpeed: 50
+  defaultSpeed: 1
+  defaultRotationSpeed: 1
+  defaultFollowMouse: 1
+  defaultThrust: 50
+  defaultTilt: 1
+  pauseSkin: {fileID: 11400000, guid: a558b91e13fe84840bcb67977734c3f6, type: 2}
+  resumeSkin: {fileID: 11400000, guid: 2868305646c2a484fa1b04a73f43186b, type: 2}
+  settingsSkin: {fileID: 11400000, guid: 0e0a74dd3db6b2145bd73fa036de8a15, type: 2}
+  quitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
+  backSkin: {fileID: 11400000, guid: e29a75b664f35ef41be3ee2a2198efd0, type: 2}
+  advancedSkin: {fileID: 11400000, guid: 5668a2676a1b8884c935d833353b3377, type: 2}
 --- !u!1 &594128233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,10 +1468,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2085290237}
   m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!1 &811403301
-GameObject:
-  m_PrefabParentObject: {fileID: 183006, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e, type: 2}
-  m_PrefabInternal: {fileID: 1038415338}
 --- !u!1001 &846614119
 Prefab:
   m_ObjectHideFlags: 0
@@ -4224,10 +4218,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1921561361
-GameObject:
-  m_PrefabParentObject: {fileID: 183006, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e, type: 2}
-  m_PrefabInternal: {fileID: 1789348930}
 --- !u!224 &1973207347
 RectTransform:
   m_PrefabParentObject: {fileID: 22464348, guid: 0e7ea09ce5ee9b2409824a0e3d467a6e,
