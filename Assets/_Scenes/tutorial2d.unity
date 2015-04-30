@@ -1286,7 +1286,6 @@ MonoBehaviour:
   defaultRotationSpeed: 1
   defaultFollowMouse: 1
   defaultThrust: 50
-  defaultTilt: 1
   pauseSkin: {fileID: 11400000, guid: a558b91e13fe84840bcb67977734c3f6, type: 2}
   resumeSkin: {fileID: 11400000, guid: 2868305646c2a484fa1b04a73f43186b, type: 2}
   settingsSkin: {fileID: 11400000, guid: 0e0a74dd3db6b2145bd73fa036de8a15, type: 2}
@@ -4179,7 +4178,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bf75b984df8a84987bcf3a8bf6e2862d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 46189560910c9a94cbcfa221bf03f172, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .5
   m_Pitch: 1

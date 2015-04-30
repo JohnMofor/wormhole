@@ -14,14 +14,14 @@ public class PauseMenuController : MonoBehaviour {
 	public float defaultRotationSpeed;
 	public bool defaultFollowMouse;
 	public float defaultThrust;
-	public bool defaultTilt;
+	//public bool defaultTilt;
 	
 	private float topSpeed;
 	private float speed;
 	private float rotationSpeed;
 	private bool followMouse;
 	private float thrust;
-	private bool tilt;
+	//private bool tilt;
 
 	public GUISkin pauseSkin;
 	public GUISkin resumeSkin;
@@ -40,7 +40,7 @@ public class PauseMenuController : MonoBehaviour {
 		rotationSpeed = defaultRotationSpeed;
 		followMouse = defaultFollowMouse;
 		thrust = defaultThrust;
-		tilt = defaultTilt;
+		//tilt = defaultTilt;
 	}
 
 	void Update ()
@@ -72,7 +72,7 @@ public class PauseMenuController : MonoBehaviour {
 
 		// In core menu page
 		if (paused && !inSettings && !inAdvancedSettings) {
-			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 275, 400, 550));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
 			GUI.Label (new Rect (125, 50, 100, 20), "Pause", titleStyle);
 			GUI.skin = resumeSkin;
@@ -94,8 +94,8 @@ public class PauseMenuController : MonoBehaviour {
 
 		// In main settings page
 		} else if (inSettings) {
-			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
-			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 250, 350, 500));
+			GUI.Box (new Rect (0, 0, 350, 500), "");
 			GUI.Label (new Rect (125, 35, 100, 20), "Settings", titleStyle);
 			GUI.Label (new Rect(25, 95, 100, 20), "Top Speed", labelStyle);
 			topSpeed = GUI.HorizontalSlider(new Rect (175, 100, 150, 30), topSpeed, 0.0f, 100.0f);
@@ -112,20 +112,31 @@ public class PauseMenuController : MonoBehaviour {
 			if (rotationSpeed != defaultRotationSpeed) {
 				playerController.updateMainSettings("Rotation Speed", rotationSpeed, true);
 			}
-			GUI.Label (new Rect(25, 245, 100, 20), "Follow Mouse", labelStyle);
-			bool newFollowMouse = GUI.Toggle(new Rect (250, 250, 50, 50), followMouse, "");
+			GUI.Label (new Rect(25, 245, 100, 20), "Thrust", labelStyle);
+			thrust = GUI.HorizontalSlider(new Rect (175, 250, 150, 30), thrust, 0.0f, 100.0f);
+			if (thrust != defaultThrust) {
+				playerController.updateMainSettings("Thrust", thrust, true);
+			}
+			GUI.Label (new Rect(25, 295, 100, 20), "Follow Mouse", labelStyle);
+			bool newFollowMouse = GUI.Toggle(new Rect (250, 300, 50, 50), followMouse, "");
 			if (newFollowMouse != followMouse) {
 				playerController.updateMainSettings("Follow Mouse", 0.0f, newFollowMouse);
 				followMouse = newFollowMouse;
 			}
+
+			GUI.skin = settingsSkin;
+			if (GUI.Button(new Rect(145, 325, 60, 60), "")) {
+				resetToDefaults();
+			}
 			
-			GUI.skin = advancedSkin;
+			/*GUI.skin = advancedSkin;
 			if (GUI.Button (new Rect (175, 300, 100, 100), "")) {
 				inAdvancedSettings = true;
 				inSettings = false;
-			}
+			}*/
+
 			GUI.skin = backSkin;
-			if (GUI.Button (new Rect (75, 300, 100, 100), "")) {
+			if (GUI.Button (new Rect (125, 387.5f, 100, 100), "")) {
 				inSettings = false;
 			}
 			GUI.skin = quitSkin;
@@ -135,15 +146,11 @@ public class PauseMenuController : MonoBehaviour {
 			GUI.EndGroup ();
 
 		// In Advanced Settings Page
-		} else if (inAdvancedSettings) {
-			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+		/*} else if (inAdvancedSettings) {
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 275, 400, 550));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
 			GUI.Label (new Rect (125, 50, 100, 20), "Advanced", titleStyle);
-			GUI.Label (new Rect(25, 145, 100, 20), "Thrust", labelStyle);
-			thrust = GUI.HorizontalSlider(new Rect (175, 150, 150, 30), thrust, 0.0f, 100.0f);
-			if (thrust != defaultThrust) {
-				playerController.updateAdvancedSettings("Thrust", thrust, true);
-			}
+
 			GUI.Label (new Rect(25, 195, 100, 20), "Tilt", labelStyle);
 			bool newTilt = GUI.Toggle(new Rect (250, 200, 50, 50), tilt, "");
 			if (newTilt != followMouse) {
@@ -159,7 +166,7 @@ public class PauseMenuController : MonoBehaviour {
 			if (GUI.Button (new Rect(300, 10, 40, 40), "")) { 
 				resumeGame ();
 			}
-			GUI.EndGroup ();
+			GUI.EndGroup ();*/
 
 		// In regular gameplay (no pause)
 		} else if (playerController) {
@@ -168,6 +175,14 @@ public class PauseMenuController : MonoBehaviour {
 				pauseGame ();
 			}
 		}
+	}
+
+	private void resetToDefaults() {
+		topSpeed = defaultTopSpeed;
+		speed = defaultSpeed;
+		rotationSpeed = defaultRotationSpeed;
+		followMouse = defaultFollowMouse;
+		thrust = defaultThrust;
 	}
 
 	private void resumeGame() {

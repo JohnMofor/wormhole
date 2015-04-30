@@ -9,6 +9,7 @@ public class CreateMenuGUI : MonoBehaviour {
 	public GUISkin CreditsSkin;
 	public GUISkin QuitSkin;
 	public GUISkin Logo;
+	public GUISkin Platypus;
 
 	private bool inCredits;
 
@@ -50,10 +51,12 @@ public class CreateMenuGUI : MonoBehaviour {
 				Application.Quit ();
 			}
 			GUI.skin = CreditsSkin;
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 80, 30), "")) {
+			if (GUI.Button (new Rect (40, Screen.height - 60, 80, 30), "")) {
 				Debug.Log ("credits");
 				inCredits = true;
 			}
+			GUI.skin = Platypus;
+			GUI.Box(new Rect(750, 150, 500, 500), "");
 		}
 
 	}
