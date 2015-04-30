@@ -150,23 +150,33 @@ public class PlayerController : MonoBehaviour
 	//////////////////
 	///// Call-backs
 	/////////////////
-	public void updateMainSettings ()
+	public void updateMainSettings (String setting, float value, bool boolean)
 	{
-		speed = speedSlider.value;
-		topSpeed = topSpeedSlider.value;
-		rotationSpeed = rotationSpeedSlider.value;
-		followMouse = followMouseToggle.isOn;
+		switch(setting) {
+			case "Speed":
+				speed = value;
+				break;
+			case "Top Speed":
+				topSpeed = value;
+				break;
+			case "Rotation Speed":
+				rotationSpeed = value;
+				break;
+			case "Follow Mouse":
+				followMouse = boolean;
+				break;
+		}
 	}
 
-	public void updateAdvancedSettings ()
+	public void updateAdvancedSettings (String setting, float value, bool boolean)
 	{
-		tilt = tiltSlider.value;
-		enableTilt = tiltToggle.isOn;
-		thrust = thrustSlider.value;
-		if (enableTilt == false) {
-			tiltSlider.interactable = false;
-		} else {
-			tiltSlider.interactable = true;
+		switch (setting) {
+		case "Thrust":
+			thrust = value;
+			break;
+		case "Tilt":
+			enableTilt = boolean;
+			break;
 		}
 	}
 
