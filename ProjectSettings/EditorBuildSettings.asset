@@ -11,5 +11,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/startMenu.unity
   - enabled: 1
     path: Assets/_Scenes/tutorial2d.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/core3d.unity

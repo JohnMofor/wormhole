@@ -5,11 +5,9 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-
-
-	public GameObject hazard;
+	
+	private int collected;
 	public Vector3 spawnValues;
-	public int hazardCount;
 	public float startWait;
 	public float spawnWait;
 	public float waveWait;
@@ -27,6 +25,14 @@ public class GameController : MonoBehaviour
 	private int score;
 	private bool paused;
 	private bool inSettings;
+	private bool inAdvancedSettings;
+
+	public GUISkin pauseSkin;
+	public GUISkin resumeSkin;
+	public GUISkin settingsSkin;
+	public GUISkin quitSkin;
+	public GUISkin backSkin;
+	public GUISkin advancedSkin;
 
 	void UpdateScore ()
 	{
@@ -47,7 +53,7 @@ public class GameController : MonoBehaviour
 	}
 
 	public void ReachedDestination() {
-		gameOverText.text = "Congratulations!";
+		gameOverText.text = "Good Job!";
 		gameOver = true;
 	}
 	
@@ -57,38 +63,16 @@ public class GameController : MonoBehaviour
 		score = 0;
 		UpdateScore ();
 
+		collected = 0;
+
 		restartText.text = "";
 		gameOverText.text = "";
 		gameOver = false;
 		restart = false;
 		paused = false;
 		inSettings = false;
-
-		//StartCoroutine (SpawnWaves());
+		inAdvancedSettings = false;
 	}
-
-//
-//	IEnumerator SpawnWaves() {
-//		yield return new WaitForSeconds(startWait);
-//		while(true) {
-//			for (int i = 0; i < hazardCount; i++) {
-//				Vector3 spawnPosition = new Vector3(
-//					Random.Range(-spawnValues.x, spawnValues.x), 
-//					spawnValues.y, 
-//					spawnValues.z);
-//				Quaternion spawnRotation = Quaternion.identity;
-//				Instantiate (hazard, spawnPosition, spawnRotation);
-//				yield return new WaitForSeconds(spawnWait);
-//			}
-//			yield return new WaitForSeconds(waveWait);
-//
-//			if (gameOver) {
-//				restartText.text = "Press 'r' to Restart";
-//				restart = true;
-//				break;
-//			}
-//		}
-//	}
 
 	// Update is called once per frame
 	void Update ()
@@ -96,7 +80,7 @@ public class GameController : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.P)) {
 			if (!paused) {
 				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
-				pauseCanvas.enabled = true;
+				// pauseCanvas.enabled = true;
 				Time.timeScale = 0;
 				paused = true;
 			}
@@ -116,6 +100,92 @@ public class GameController : MonoBehaviour
 				Application.LoadLevel (Application.loadedLevel);
 			}
 		}
+	}
+
+	void OnGUI() {
+		if (paused && !inSettings && !inAdvancedSettings) {
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label (new Rect (125, 50, 100, 20), "Pause");
+			GUI.skin = resumeSkin;
+			if (GUI.Button (new Rect (125, 100, 100, 100), "")) {
+				(GameObject.Find ("Player").GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+				Time.timeScale = 1;
+				paused = false;
+			}
+			GUI.skin = settingsSkin;
+			if (GUI.Button (new Rect (125, 200, 100, 100), "")) {
+				inSettings = true;
+			}
+			GUI.skin = quitSkin;
+			if (GUI.Button (new Rect (125, 300, 100, 100), "")) {
+				Application.LoadLevel ("startMenu");
+				paused = false;
+				Time.timeScale = 1;
+			}
+			if (GUI.Button (new Rect(300, 10, 40, 40), "")) { 
+				(GameObject.Find ("Player").GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+				Time.timeScale = 1;
+				paused = false;
+			}
+			GUI.EndGroup ();
+		} else if (inSettings) {
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label (new Rect (125, 50, 100, 20), "Settings");
+			GUI.skin = advancedSkin;
+			if (GUI.Button (new Rect (175, 300, 100, 100), "")) {
+				inAdvancedSettings = true;
+				inSettings = false;
+			}
+			GUI.skin = backSkin;
+			if (GUI.Button (new Rect (75, 300, 100, 100), "")) {
+				inSettings = false;
+			}
+			GUI.skin = quitSkin;
+			if (GUI.Button (new Rect(300, 10, 40, 40), "")) { 
+				(GameObject.Find ("Player").GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+				Time.timeScale = 1;
+				inSettings = false;
+				paused = false;
+			}
+			GUI.EndGroup ();
+		} else if (inAdvancedSettings) {
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
+			GUI.Box (new Rect (0, 0, 350, 450), "");
+			GUI.Label (new Rect (125, 50, 100, 20), "Advanced");
+			GUI.skin = backSkin;
+			if (GUI.Button (new Rect (125, 300, 100, 100), "")) {
+				inAdvancedSettings = false;
+				inSettings = true;
+			}
+			GUI.skin = quitSkin;
+			if (GUI.Button (new Rect(300, 10, 40, 40), "")) { 
+				(GameObject.Find ("Player").GetComponent ("PlayerController") as MonoBehaviour).enabled = true;
+				Time.timeScale = 1;
+				inSettings = false;
+				paused = false;
+			}
+			GUI.EndGroup ();
+		} else {
+			GUI.skin = pauseSkin;
+			if (GUI.Button(new Rect(Screen.width - 60, 10, 50, 50),"")) {
+				(GameObject.Find("Player").GetComponent("PlayerController") as MonoBehaviour).enabled = false;
+				Time.timeScale = 0;
+				paused = true;
+			}
+		}
+	}
+	
+	public void collectCollectible(GameObject collectible) {
+		collected += 1;
+	}
+
+	public bool allCollected() {
+		if (collected == 3) {
+			return true;
+		} else
+			return false;
 	}
 
 	public void ResumeGame() {
