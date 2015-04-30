@@ -7,6 +7,13 @@ public class LevelSelectionManager : MonoBehaviour {
 
 	public int numberOfLevels;
 
+	private static Dictionary<string,int> nextLevelOf = new Dictionary<string,int >()
+	{
+		{"tutorial2d",2},
+		{"level_solarSystem",4},
+		{"level_wormholes",-1}
+	};
+
 	void Awake (){
 
 		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
@@ -33,6 +40,7 @@ public class LevelSelectionManager : MonoBehaviour {
 		}
 	}
 
+
 	public static void UnlockNextLevel(int nextLevelNumber)
 	{
 		int[] unlockedLevels = PlayerPrefsX.GetIntArray ("unlockedLevels",1,1);
@@ -51,5 +59,10 @@ public class LevelSelectionManager : MonoBehaviour {
 	{
 		Application.LoadLevel (level);
 
+	}
+
+	public static int NextLevelOf(string level)
+	{
+		return nextLevelOf [level];
 	}
 }
