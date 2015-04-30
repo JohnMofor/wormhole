@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Collectible : MonoBehaviour
 {
 	public GameController gameController;
-	
+	public AudioClip collectionSound;
+
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.transform.root == transform.root) {
@@ -14,9 +16,9 @@ public class Collectible : MonoBehaviour
 			return;
 		}
 		if (other.tag == "Player") {
-			gameController.collectCollectible(gameObject);
+			gameController.AddCollectible();
+			AudioSource.PlayClipAtPoint(collectionSound, new Vector3(5, 1, 2), 0.15f);
 			Destroy (gameObject);
-			gameController.AddScore(10);
 		}
 	}
 }

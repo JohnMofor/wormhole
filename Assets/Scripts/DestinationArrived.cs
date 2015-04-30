@@ -17,8 +17,7 @@ public class DestinationArrived : MonoBehaviour
 		
 		if (other.tag == "Player") {
 			//Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
-			if (gameController.allCollected() == true) {
-				gameController.ReachedDestination ();
+			if (gameController.ReachedDestination (other.gameObject)) {
 				Destroy (other.gameObject);
 			}
 			else Debug.Log ("collect the rest!");
