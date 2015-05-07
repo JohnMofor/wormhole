@@ -436,17 +436,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlaySkin: {fileID: 11400000, guid: 30f5a1c408774a44baf33f408b9c3176, type: 2}
-  TutorialSkin: {fileID: 11400000, guid: c639101840025804382046d972ee20a1, type: 2}
+  TutorialSkin: {fileID: 0}
   ExitSkin: {fileID: 11400000, guid: ef00fef708448de49be8b163a28cf752, type: 2}
   CreditsSkin: {fileID: 11400000, guid: faf4f50316360b3458c14f8d691d449f, type: 2}
   QuitSkin: {fileID: 11400000, guid: acb165fcfc312254181a2e718f64ee0d, type: 2}
   Logo: {fileID: 11400000, guid: 03e5dc452182be2438e0ede97e52f1db, type: 2}
   Platypus: {fileID: 11400000, guid: f8b9f1f000969254b80251728cca9ee2, type: 2}
---- !u!1 &1740890246
+--- !u!1 &1740890246 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_PrefabInternal: {fileID: 1784770951}
---- !u!224 &1740890247
+--- !u!224 &1740890247 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497782, guid: 0982c9fb5c643e641a179c483d31f9af,
     type: 2}
@@ -654,11 +654,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1 &1885341011
+--- !u!1 &1885341011 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_PrefabInternal: {fileID: 2054847369}
---- !u!224 &1885341012
+--- !u!224 &1885341012 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497782, guid: 0982c9fb5c643e641a179c483d31f9af,
     type: 2}
@@ -674,11 +674,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9274766004e7d04f92aff4e88416b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2051277386
+--- !u!1 &2051277386 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 160836, guid: 0982c9fb5c643e641a179c483d31f9af, type: 2}
   m_PrefabInternal: {fileID: 994874999}
---- !u!224 &2051277387
+--- !u!224 &2051277387 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497782, guid: 0982c9fb5c643e641a179c483d31f9af,
     type: 2}
