@@ -177,26 +177,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11439108, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 1693244769}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380200, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 2394404, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
     - target: {fileID: 164646, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_Name
       value: Blackhole2d 2
@@ -227,6 +207,7 @@ MonoBehaviour:
   verticalPadding: 5
   scaleInWormhole: .100000001
   wormholeAnimationSteps: 100
+  teleportDuration: 5
   followMouse: 1
   shipRotateTowards: {x: 0, y: 0, z: 0, w: 0}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
@@ -1422,28 +1403,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 11439108, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 1693244769}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380200, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 2394404, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
   m_IsPrefabParent: 0
@@ -1779,6 +1740,7 @@ MonoBehaviour:
   verticalPadding: 5
   scaleInWormhole: .100000001
   wormholeAnimationSteps: 100
+  teleportDuration: 5
   followMouse: 1
   shipRotateTowards: {x: 0, y: 0, z: 0, w: 0}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
@@ -2338,35 +2300,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402018, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 11439108, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 1693244769}
     - target: {fileID: 164646, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
       propertyPath: m_Name
       value: Blackhole2d 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11443698, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: turnSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2394404, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
-    - target: {fileID: 3380200, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 482120, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d1ade92d3b80d4287451ebd3d249af, type: 2}

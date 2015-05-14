@@ -55,26 +55,30 @@ public class LevelSelectionManager : MonoBehaviour
 		titleStyle.fontSize = 60;
 		titleStyle.normal.textColor = Color.white;
 
-		GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 300, 400, 100), "Level Selection", titleStyle);
+		//GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 300, 400, 100), "Level Selection", titleStyle);
+
+
+		float allLevelHeight = Screen.height / 2 - 100;
+		float allLevelSeparation = Screen.width / (7);
 
 		GUI.skin = tutorialSkin;
-		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "")) {
+		if (GUI.Button (new Rect (allLevelSeparation * 1, allLevelHeight, 200, 200), "")) {
 			Application.LoadLevel (1);
 		}
 		GUI.skin = solarSystemSkin;
-		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 100), "")) {
+		if (GUI.Button (new Rect (allLevelSeparation * 2, allLevelHeight, 200, 200), "")) {
 			Application.LoadLevel (3);
 		}
 		GUI.skin = wormholeSkin;
-		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 100, 400, 100), "")) {
-			Application.LoadLevel(4);
+		if (GUI.Button (new Rect (allLevelSeparation * 3, allLevelHeight, 200, 200), "")) {
+			Application.LoadLevel (4);
 		}
 		GUI.skin = blackholeSkin;
-		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 + 200, 400, 100), "")) {
-			Application.LoadLevel(5);
+		if (GUI.Button (new Rect (allLevelSeparation * 4, allLevelHeight, 200, 200), "")) {
+			Application.LoadLevel (5);
 		}
 		GUI.skin = binarySkin;
-		if (GUI.Button (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 0, 400, 100), "")) {
+		if (GUI.Button (new Rect (allLevelSeparation * 5, allLevelHeight, 200, 200), "")) {
 			Application.LoadLevel (6);
 		}
 

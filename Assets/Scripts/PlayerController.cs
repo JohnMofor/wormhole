@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
 	public float horizontalPadding = 5F;
 	public float verticalPadding = 5F;
 	public float scaleInWormhole = 0.1F;
-	public float wormholeAnimationSteps = 100;
 	// /*not in 2d*/ public bool enableTilt = true;
 	public bool followMouse = true;
 	public Quaternion shipRotateTowards;
@@ -46,6 +45,7 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody rb;
 	private ParticleRenderer particleRenderer;
 	private Renderer backgroundRenderer;
+	private float increment = 0.003f;
 	// /*not in 2d*/ private float previousY;
 	private Vector3 startScale;
 
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 	IEnumerator translate (Vector3 to, float duration, Vector3 endScale)
 	{
 		float progress = 0;
-		float increment = duration / wormholeAnimationSteps; //The amount of change to apply.
+		//float increment = duration / wormholeAnimationSteps; //The amount of change to apply.
 
 		while (progress <= 0.25) {
 			transform.position = Vector3.Lerp (transform.position, to, progress);
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
 		yield return null;
 	}
 
-	IEnumerator _teleport (Vector3 from, Vector3 to, float duration)
+	IEnumerator _teleport (Vector3 from, Vector3 to)
 	{
 
 		// Freeze all inputs
@@ -223,17 +223,18 @@ public class PlayerController : MonoBehaviour
 		Vector3 wormholeScale = startScale * scaleInWormhole;
 
 		// Compute all timing requirements
-		float timeToDestination1 = duration / 4;
-		float timeAtDestination1 = duration / 4;
-		float timeToDestination2 = duration / 4;
-		float timeAtDestination2 = duration / 4;
+		float timeToDestination1 = 1 / 4;
+		float timeAtDestination1 = 1 / 4;
+		float timeToDestination2 = 1 / 4;
+		float timeAtDestination2 = 1 / 4;
 		// Go to destination 1.
-		yield return StartCoroutine (translate (from, timeToDestination1, transform.localScale));
-		this.teleportationState = TeleportationState.AtDestination1;
-		// At destination 1. stop thrusters and reduce the scale.
 		this.particleRenderer.enabled = false;
-		yield return StartCoroutine (translate (transform.position, timeAtDestination1, wormholeScale));
+		yield return StartCoroutine (translate (from, timeToDestination1, wormholeScale));
+		// this.teleportationState = TeleportationState.AtDestination1;
+		// At destination 1. stop thrusters and reduce the scale.
+		//yield return StartCoroutine (translate (transform.position, timeAtDestination1, wormholeScale));
 		this.teleportationState = TeleportationState.ToDestination2;
+
 		// Go to destination 2.
 		yield return StartCoroutine (translate (to, timeToDestination2, transform.localScale));
 		this.teleportationState = TeleportationState.AtDestination2;
@@ -244,9 +245,9 @@ public class PlayerController : MonoBehaviour
 		yield return null;
 	}
 
-	public void teleport (Vector3 from, Vector3 to, float time)
+	public void teleport (Vector3 from, Vector3 to)
 	{
-		StartCoroutine (_teleport (from, to, time));
+		StartCoroutine (_teleport (from, to));
 	}
 
 }

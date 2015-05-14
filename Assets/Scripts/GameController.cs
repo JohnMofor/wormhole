@@ -61,13 +61,13 @@ public class GameController : MonoBehaviour
 
 			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 225, 350, 450));
 			GUI.Box (new Rect (0, 0, 350, 450), "");
-			GUI.Label (new Rect (100, 75, 100, 50), "Game Over!", titleStyle);
+			//GUI.Label (new Rect (100, 75, 100, 50), "Game Over!", titleStyle);
 			GUI.skin = tryAgainSkin;
-			if (GUI.Button (new Rect (15, 150, 320, 40), "")) {
+			if (GUI.Button (new Rect (15, 105, 320, 100), "")) {
 				Application.LoadLevel (Application.loadedLevel);
 			}
 			GUI.skin = exitSkin;
-			if (GUI.Button (new Rect (75, 200, 200, 100), "")) {
+			if (GUI.Button (new Rect (75, 225, 200, 100), "")) {
 				Application.LoadLevel ("startMenu");
 			}
 			GUI.EndGroup ();

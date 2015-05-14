@@ -46,7 +46,7 @@ public class Teleport : MonoBehaviour
 
 		teleportDestination.deactivate ();
 		this.nextExitIsTeleport = true;
-		playerController.teleport (transform.position, destination, teleportationDuration);
+		playerController.teleport (transform.position, destination);
 	}
 
 	void OnTriggerExit (Collider other)

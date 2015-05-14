@@ -45,6 +45,7 @@ GameObject:
   - 135: {fileID: 13577010}
   - 23: {fileID: 2394404}
   - 114: {fileID: 11421846}
+  - 114: {fileID: 11492784}
   m_Layer: 0
   m_Name: Blackhole2d
   m_TagString: Untagged
@@ -58,8 +59,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.1000004, y: 0, z: -44.2000008}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
+  m_LocalPosition: {x: -40, y: 0, z: 0}
   m_LocalScale: {x: 18, y: 18, z: 18}
   m_Children:
   - {fileID: 425004}
@@ -84,7 +85,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -100,7 +101,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 214973094d349f443b2c7d45b8e64e39, type: 2}
+  - {fileID: 2100000, guid: e0c042f4152903141a39541da087cd68, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -120,7 +121,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164646}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &11421846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e39b372546195747922f111617217b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackHolePullForce: 80
+  blackHolePullForce: 500
 --- !u!114 &11439108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
-  gameController: {fileID: 0}
 --- !u!114 &11443698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +170,19 @@ MonoBehaviour:
   sizeValue: .400000006
   numberOfSpawns: 9999999
   spawnRate: 1
+--- !u!114 &11492784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164646}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1904866e463033843a3325794c2f50ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 40
+  center: {x: 0, y: 0, z: 0}
 --- !u!135 &13560200
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -192,7 +205,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.72575629
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
