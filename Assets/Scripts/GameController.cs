@@ -72,20 +72,21 @@ public class GameController : MonoBehaviour
 			}
 			GUI.EndGroup ();
 		} else if (gameOver == true && victory == true) {
-			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 125, 350, 250));
-			GUI.Box (new Rect (0, 0, 350, 250), "");
+			GUI.BeginGroup (new Rect (Screen.width / 2 - 175, Screen.height / 2 - 125, 350, 350));
+			//GUI.backgroundColor = new Color(0,0,0, 0.5f);
+			GUI.Box (new Rect (0, 0, 350, 350), "");
 			GUI.skin = greatJobSkin;
-			GUI.Button (new Rect (75, 25, 200, 50), "");
+			GUI.Button (new Rect (35, 50, 275, 150), "");
 			GUI.skin = backToMenuSkin;
-			if (GUI.Button (new Rect (25, 100, 100, 100), "")) {
+			if (GUI.Button (new Rect (25, 225, 100, 100), "")) {
 				Application.LoadLevel ("startMenu");
 			}
 			GUI.skin = restartSkin;
-			if (GUI.Button (new Rect (125, 100, 100, 100), "")) {
+			if (GUI.Button (new Rect (125, 225, 100, 100), "")) {
 				Application.LoadLevel (Application.loadedLevel);
 			}
 			GUI.skin = nextLevelSkin;
-			if (GUI.Button (new Rect (225, 100, 100, 100), "")) {
+			if (GUI.Button (new Rect (225, 225, 100, 100), "")) {
 				if (Application.loadedLevel < 6) {
 					Application.LoadLevel (Application.loadedLevel + 1);
 				} else {
